@@ -1,2 +1,1 @@
-# Nspace
-Hostel managment system 
+<h1>Welcome to NSPACE</h1>
