@@ -22,19 +22,19 @@
             <ul class="links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="#">Hostels</a></li>
+                <li><a href="#">Articles</a></li>
                 <li><a href="#">Feedbacks</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
             <div class="buttons">
-                <a href="#" class="signin">Sign In</a>
+                <a href="signin.php" class="signin">Sign In</a>
                 <a href="#" class="signup">Sign Up</a>
             </div>
         </nav>
     </header>
     <section class="hero-section">
         <div class="hero">
-            <h2>Hostel Management System</h2>
+            <h2>Welcome to NSpace Hostel Management System!</h2>
             <p>
                 Best Place to find  your dream hostel!
             </p>
