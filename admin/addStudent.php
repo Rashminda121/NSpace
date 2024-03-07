@@ -37,7 +37,7 @@
                   <input type="text" name="semail" id="semail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student ID" required="">
               </div>
               <div class="w-full">
-                  <label for="sname" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
+                  <label for="spassword" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
                   <input type="text" name="spassword" id="spassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student Batch" required="">
               </div> 
           </div>
