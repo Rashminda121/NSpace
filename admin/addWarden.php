@@ -39,6 +39,47 @@
   </div>
 </section>
 
+<?php
+
+require_once('dbConfig.php');
+
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conn = OpenCon();
+    // Sanitize user input
+    $wname = sanitizeInput($_POST['wname']);
+    $wmobile = sanitizeInput($_POST['wmobile']);
+    $wemail = sanitizeInput($_POST['wemail']);
+    $wpassword = sanitizeInput($_POST['wpassword']);
+
+    
+    $sql = "INSERT INTO warden (wname, wmobile, wemail, wpassword)
+            VALUES (?, ?, ?, ?)";
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $wname, $wmobile, $wemail, $wpassword);
+
+        $stmt->execute();
+
+        $success_message = "Warden details added successfully.";
+        echo "<script>alert('$success_message');</script>";
+
+    } catch(mysqli_sql_exception $e) {
+        $error_message = $e->getMessage();
+        echo "<script>alert('$error_message');</script>";
+    } finally {
+        $stmt->close();
+        CloseCon($conn); 
+    }
+}
+?>
 
 </body>
 </html>
