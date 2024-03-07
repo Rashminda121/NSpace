@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header class="header">
+    <!-- <header class="header">
         <nav class="navbar">
             <h2 class="logo"><a href="#">NSpace</a></h2>
             <input type="checkbox" id="menu-toggle" />
@@ -31,7 +31,7 @@
                 <a href="#" class="signup">Sign Up</a>
             </div>
         </nav>
-    </header>
+    </header> -->
     <section class="hero-section">
         <div class="hero">
             <h2>Welcome to NSpace Hostel Management System!</h2>
@@ -39,8 +39,10 @@
                 Best Place to find  your dream hostel!
             </p>
             <div class="buttons">
-                <a href="#" class="join">Explore</a>
-                <a href="#" class="learn">Articles</a>
+                <a href="landlord/signin.php" class="learn">Landlord</a>
+                <a href="warden/signin.php" class="learn">Warden</a>
+                <a href="student/signin.php" class="learn">Students</a>
+                <a href="admin/signin.php" class="learn">Admin</a>
             </div>
         </div>
         <div class="img">
