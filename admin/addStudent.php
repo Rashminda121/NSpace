@@ -10,9 +10,9 @@
 <?php include("adminNavbar.php"); ?>
 <section class="bg-white ">
   <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-      <h2 class="mb-10 text-xl font-bold text-gray-900">Add a new student</h2>
+      <h2 class="mb-10 text-2xl font-bold text-gray-900">Let's add a new student.</h2>
       <form action="addStudent.php" method="post">
-          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mt-16">
               <div class="w-full">
                   <label for="sid" class="block mb-2 text-sm font-medium text-gray-900 ">Student ID</label>
                   <input type="text" name="sid" id="sid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student ID" required="">
