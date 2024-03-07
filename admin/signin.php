@@ -3,7 +3,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Hostel Management System</title>
-    
 </head>
 <body>
 <?php include("../Navbar.php"); ?>
@@ -39,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $aemail = $_POST['aemail'];
 $apassword = $_POST['apassword'];
 
-// (** Simulate user data validation - Replace with your logic!** )
 $valid_email = "nsbmadmin@gmail.com";
 $valid_password = "admin1234";
 
