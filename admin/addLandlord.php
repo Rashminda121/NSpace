@@ -43,9 +43,48 @@
   </div>
 </section>
 
+<?php
 
+require_once('dbConfig.php');
 
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conn = OpenCon();
+    // Sanitize user input
+    $lname = sanitizeInput($_POST['lname']);
+    $lmobile = sanitizeInput($_POST['lmobile']);
+    $laddress = sanitizeInput($_POST['laddress']);
+    $lemail = sanitizeInput($_POST['lemail']);
+    $lpassword = sanitizeInput($_POST['lpassword']);
+
+    
+    $sql = "INSERT INTO landlord (lname, lmobile, laddress, lemail, lpassword)
+            VALUES (?, ?, ?, ?, ?)";
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssss", $lname, $lmobile, $laddress, $lemail, $lpassword);
+
+        $stmt->execute();
+
+        $success_message = "Landlord details added successfully.";
+        echo "<script>alert('$success_message');</script>";
+
+    } catch(mysqli_sql_exception $e) {
+        $error_message = $e->getMessage();
+        echo "<script>alert('$error_message');</script>";
+    } finally {
+        $stmt->close();
+        CloseCon($conn); 
+    }
+}
+?>
 
 </body>
 </html>
