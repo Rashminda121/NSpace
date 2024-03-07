@@ -39,8 +39,10 @@
                 Best Place to find  your dream hostel!
             </p>
             <div class="buttons">
-                <a href="#" class="join">Explore</a>
-                <a href="#" class="learn">Articles</a>
+                <a href="#" class="learn">Landlord</a>
+                <a href="#" class="learn">Warden</a>
+                <a href="#" class="learn">Students</a>
+                <a href="#" class="learn">Admin</a>
             </div>
         </div>
         <div class="img">
