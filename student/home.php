@@ -21,7 +21,7 @@
                 <div class="mt-6">
                     <a href="#" class="inline-block ml-3 px-5 py-3 text-base font-medium text-gray-900 bg-[#7dd3fc] rounded-lg hover:bg-[#0369a1] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">Check Now...</a>
                     <span class="mx-1"></span>
-                    <a href="#" class="inline-block px-5 py-3 text-base font-medium text-white bg-[#0369a1] rounded-lg hover:bg-[#7dd3fc] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">See More Articles</a>
+                    <a href="articles.php" class="inline-block px-5 py-3 text-base font-medium text-white bg-[#0369a1] rounded-lg hover:bg-[#7dd3fc] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">See More Articles</a>
                 </div>
             </div>
             <div class="flex items-center justify-center mt-6 lg:mt-0 lg:col-span-5">
