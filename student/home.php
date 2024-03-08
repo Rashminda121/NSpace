@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="flex items-center justify-center mt-6 lg:mt-0 lg:col-span-5">
-                <img src="image/2.avif" alt="Mockup" class="w-full h-auto lg:w-auto">
+                <img src="image/3.jpg" alt="Mockup" class="w-full h-auto lg:w-auto">
             </div>
         </div>
     </section>
