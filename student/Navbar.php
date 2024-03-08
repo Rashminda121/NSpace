@@ -2,7 +2,7 @@
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2">
     <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
         <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_d5f4bf67004e05149f3eac303f46819e/nspace.png" class="h-10" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap">Nspace</span>
+        <span class="self-center text-2xl font-semibold whitespace-nowrap">NSpace</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
