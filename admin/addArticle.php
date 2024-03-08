@@ -33,6 +33,44 @@
   </div>
 </section>
 
+<?php
+
+require_once('dbConfig.php');
+
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conn = OpenCon();
+    // Sanitize user input
+    $title = sanitizeInput($_POST['title']);
+    $content = sanitizeInput($_POST['content']);
+    
+    $sql = "INSERT INTO article (title, content)
+            VALUES (?, ?)";
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $title, $content);
+
+        $stmt->execute();
+
+        $success_message = "Article posted successfully.";
+        echo "<script>alert('$success_message');</script>";
+
+    } catch(mysqli_sql_exception $e) {
+        $error_message = $e->getMessage();
+        echo "<script>alert('$error_message');</script>";
+    } finally {
+        $stmt->close();
+        CloseCon($conn); 
+    }
+}
+?>
 
 </body>
 </html>
