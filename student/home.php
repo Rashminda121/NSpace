@@ -20,6 +20,7 @@
                 <br>
                 <div class="mt-6">
                     <a href="#" class="inline-block ml-3 px-5 py-3 text-base font-medium text-gray-900 bg-[#7dd3fc] rounded-lg hover:bg-[#0369a1] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">Book Now...</a>
+                    <span class="mx-1"></span>
                     <a href="#" class="inline-block px-5 py-3 text-base font-medium text-white bg-[#0369a1] rounded-lg hover:bg-[#7dd3fc] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">See More Article</a>
                 </div>
             </div>
@@ -32,7 +33,7 @@
     <section id="Projects"
     class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
 
-    <!-- Product card 1 - Starts Here 👇 -->
+    <!-- Product card 1 -->
     <div class="h-80 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -43,9 +44,9 @@
             </div>
         </a>
     </div>
-    <!-- Product card 1 - Ends Here  -->
+    <!-- Product card 1 End -->
 
-    <!-- Product card 1 - Starts Here 👇 -->
+    <!-- Product card 2 -->
     <div class="h-80 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -56,9 +57,9 @@
             </div>
         </a>
     </div>
-    <!-- Product card 1 - Ends Here  -->
+    <!-- Product card 2 Ends-->
 
-    <!-- Product card 1 - Starts Here 👇 -->
+    <!-- Product card 3 -->
     <div class="h-80 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -69,9 +70,9 @@
             </div>
         </a>
     </div>
-    <!-- Product card 1 - Ends Here  -->
+    <!-- Product card 3 Ends-->
 
-    <!-- Product card 3 - Starts Here 👇 -->
+
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
             <img src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -95,7 +96,7 @@
             </div>
         </a>
     </div>
-    <!--  Product card 3 - Ends Here  -->
+>
 </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
