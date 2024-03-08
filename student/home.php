@@ -19,8 +19,8 @@
                 <p class="mt-3 text-lg font-medium text-yellow-300 lg:mt-6 lg:text-xl">Where strangers become friends and adventures begin</p>
                 <br>
                 <div class="mt-6">
-                    <a href="#" class="inline-block px-5 py-3 text-base font-medium text-white bg-[#0369a1] rounded-lg hover:bg-[#7dd3fc] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">Book Now</a>
-                    <a href="#" class="inline-block ml-3 px-5 py-3 text-base font-medium text-gray-900 bg-[#7dd3fc] rounded-lg hover:bg-[#0369a1] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">See Article</a>
+                    <a href="#" class="inline-block ml-3 px-5 py-3 text-base font-medium text-gray-900 bg-[#7dd3fc] rounded-lg hover:bg-[#0369a1] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">Book Now...</a>
+                    <a href="#" class="inline-block px-5 py-3 text-base font-medium text-white bg-[#0369a1] rounded-lg hover:bg-[#7dd3fc] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0369a1]">See More Article</a>
                 </div>
             </div>
             <div class="flex items-center justify-center mt-6 lg:mt-0 lg:col-span-5">
