@@ -65,7 +65,7 @@
             <img src="image/6.jpg"
                     alt="Product" class="h-60 w-72 object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-72">
-            <p class="text-lg font-bold text-black truncate block capitalize">How to manage hostel life</p>
+            <p class="text-lg font-bold text-black truncate block capitalize">Be aware of scammers</p>
             <span class="text-gray-400 mr-3 uppercase text-xs">2024-03-08</span>
         </a>
     </div>
