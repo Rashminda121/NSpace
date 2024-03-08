@@ -49,10 +49,10 @@
     <!-- Product card 2 -->
     <div class="h-80 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
-                    <img src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                    <img src="image/5.jpg"
                     alt="Product" class="h-60 w-72 object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-72">
-            <p class="text-lg font-bold text-black truncate block capitalize">How to find a good hostel</p>
+            <p class="text-lg font-bold text-black truncate block capitalize">How to manage hostel life</p>
                 <span class="text-gray-400 mr-3 uppercase text-xs">2024-03-08</span>
             </div>
         </a>
