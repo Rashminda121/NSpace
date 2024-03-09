@@ -32,92 +32,23 @@ if (mysqli_num_rows($result) > 0) {
     <body>
         <?php include("navbar.php"); ?>
         <?php
-        session_start();
+        
         $req = false;
         //get email
         if (isset($_GET['email'])) {
 
             $email = $_GET['email'];
         }
-        //other
-        if (isset($_GET['no_changes'])) {
 
-            $error="No changes were made!";
-            $bgcolour = "bg-blue-100 border-blue-400 text-blue-700";
-            $text = "Message : ";
-            $tcol = "text-blue-500";
-        }
-        if (isset($_GET['error'])) {
-            // $_SESSION['error'] = $_GET['error'];
-            $error = $_GET['error'];
-        }
-        if (isset($_GET['update'])) {
-            // $_SESSION['error'] = $_GET['error'];
-            $error = "Successfully Property Updated!";
-            $bgcolour = "bg-green-100 border-green-400 text-green-700";
-            $text = "Success : ";
-            $tcol = "text-green-500";
-        }
-        if (isset($_GET['delete'])) {
-            // $_SESSION['error'] = $_GET['error'];
-            $error = "Successfully Property deleted!";
-            $bgcolour = "bg-orange-100 border-orange-400 text-orange-700";
-            $text = "Success : ";
-            $tcol = "text-orange-500";
-        }
-
-        if (isset($_GET['success'])) {
-            $error = "Successfully Property Added! ";
-            $bgcolour = "bg-green-100 border-green-400 text-green-700";
-            $text = "Success : ";
-            $tcol = "text-green-500";
-
-        } else if (isset($_GET["error"])) {
-            $bgcolour = "bg-red-100 border-red-400 text-red-700";
-            $text = "Error : ";
-            $tcol = "text-red-500";
-        } else {
-            $bgcolour = "bg-blue-100 border-blue-400 text-blue-700";
-            $text = "Message : ";
-            $tcol = "text-blue-500";
-        }
-
-
-        if (!empty($error)): ?>
-            <div id="errorContainer" class="border <?php echo $bgcolour ?> px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">
-                    <?php echo $text ?>
-                </strong>
-                <span class="block sm:inline">
-                    <?php echo $error; ?>
-                </span>
-                <span id="closeButton" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
-                    <svg class="fill-current h-6 w-6 <?php echo $tcol ?>" role="button" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20">
-                        <title>Close</title>
-                        <path
-                            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-                    </svg>
-                </span>
-            </div>
-        <?php endif; ?>
-
-        <script>
-            document.getElementById('closeButton').addEventListener('click', function () {
-                document.getElementById('errorContainer').style.display = 'none';
-                window.location.href = 'propertyEdit.php?email=<?php echo $email ?>';
-            });
-        </script>
-
-
-        <h1 class=" text-2xl text-center m-5 text-blue-800 font-bold">Edit Properties</h1>
+       ?>
+        <h1 class=" text-2xl text-center m-5 text-blue-800 font-bold">View Properties</h1>
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
             <div class="flex justify-center p-10 place-content-center mb-10">
 
                 <hr>
-                <form action="propertyEditData.php?email=<?php echo $email ?>&currentid=<?php echo $row['id'] ?>" method="post"
+                <form action="" method="post"
                     enctype="multipart/form-data" class="w-full max-w-lg">
                     <div class="flex flex-wrap -mx-3 mb-6 text-left text-xl font-bold">
                         <div class="w-full px-3">
@@ -138,7 +69,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="title" name="title" type="text" placeholder="Title" value="<?php echo $row['title']; ?>"
-                                <?php echo $req ? 'required' : ''; ?>>
+                                <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
 
                     </div>
@@ -151,7 +82,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="bedroom" name="bedrooms" type="number" placeholder="bedroom"
-                                value="<?php echo $row['bedrooms']; ?>" <?php echo $req ? 'required' : ''; ?>>
+                                value="<?php echo $row['bedrooms']; ?>" <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="bathroom">
@@ -160,7 +91,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="bathroom" name="bathroom" type="number" placeholder="bathroom"
-                                value="<?php echo $row['bathrooms']; ?>" <?php echo $req ? 'required' : ''; ?>>
+                                value="<?php echo $row['bathrooms']; ?>" <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                     </div>
 
@@ -172,7 +103,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="land" type="text" placeholder="Size" name="land" value="<?php echo $row['landsize']; ?>"
-                                <?php echo $req ? 'required' : ''; ?>>
+                                <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="unit">
@@ -181,7 +112,7 @@ if (mysqli_num_rows($result) > 0) {
                             <div class="relative">
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="unit" name="unit" <?php echo $req ? 'required' : ''; ?>>
+                                    id="unit" name="unit" <?php echo $req ? 'required' : ''; ?> disabled>
                                     <?php if ($row['unit'] == 'perches') { ?>
                                         <option value="">Unit</option>
                                         <option value="perches" selected>Perches</option>
@@ -211,7 +142,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="city" type="text" placeholder="City" name="city" value="<?php echo $row['city']; ?>"
-                                <?php echo $req ? 'required' : ''; ?>>
+                                <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="state">
@@ -220,7 +151,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="state" type="text" placeholder="State" name="state"
-                                value="<?php echo $row['state']; ?>" <?php echo $req ? 'required' : ''; ?>>
+                                value="<?php echo $row['state']; ?>" <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
 
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -230,7 +161,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="zip" type="text" placeholder="Code" name="zip" value="<?php echo $row['zipcode']; ?>"
-                                <?php echo $req ? 'required' : ''; ?>>
+                                <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -241,7 +172,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="address" type="text" placeholder="Address" name="address"
-                                value="<?php echo $row['address']; ?>" <?php echo $req ? 'required' : ''; ?>>
+                                value="<?php echo $row['address']; ?>" <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -250,7 +181,7 @@ if (mysqli_num_rows($result) > 0) {
                                 for="description">Description:</label>
                             <textarea id="description" name="description" rows="4" cols="50"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                placeholder="Description" name="description" <?php echo $req ? 'required' : ''; ?>> <?php echo $row['description']; ?> </textarea>
+                                placeholder="Description" name="description" <?php echo $req ? 'required' : ''; ?> disabled> <?php echo $row['description']; ?> </textarea>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -261,7 +192,7 @@ if (mysqli_num_rows($result) > 0) {
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="price" type="text" placeholder="price" name="price"
-                                value="<?php echo $row['price']; ?>" <?php echo $req ? 'required' : ''; ?>>
+                                value="<?php echo $row['price']; ?>" <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
                         <div class="w-full md:w-2/5 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="negotiable">
@@ -270,7 +201,7 @@ if (mysqli_num_rows($result) > 0) {
                             <div class="relative">
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="negotiable" name="negotiable" <?php echo $req ? 'required' : ''; ?>>
+                                    id="negotiable" name="negotiable" <?php echo $req ? 'required' : ''; ?> disabled> 
                                     <?php if ($row['negotiable']== 'Negotiable') { ?>
                                         <option selected>Negotiable</option>
                                         <option>Not Negotiable</option>
@@ -291,48 +222,27 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                     </div>
                     <hr><br>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="image">Image</label>
-                            <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" <?php echo $req ? 'required' : ''; ?>><br>
-                        </div>
-                    </div>
+                    <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 text-center">Image</p>
                     <!-- Display images -->
-                    <div class="flex flex-wrap -mx-2 mb-4">
-                        <div class="w-1/4 px-2 mb-4 ">
-                            <img src="uploads/<?php echo $row['image']; ?>" alt="Property Image" class="w-full h-auto">
-                        </div>
+                  <div class="flex flex-wrap justify-center">
+                     
+                    <div class="w-full sm:w-2/5 px-2 mb-4 shadow-xl">
+                        <img src="uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
                     </div>
+                </div>
+
 
                     <hr><br>
-                    <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="flex flex-wrap -mx-3 mb-6 text-center">
                         <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="name">Status</label>
+                            
                             <p><span class="text-blue-700 font-bold">Status: </span>
                                 <?php echo $row['status']; ?>
                             </p>
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap -mx-3 mb-6 text-right">
-                        <div class="w-full px-3">
-                            <button type="submit" name="edit"
-                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-5 rounded">
-                                Update
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6 text-right">
-                        <div class="w-full px-3">
-                            <button type="submit" name="delete"
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-
+                    
                     <hr><br>
 
                 </form>
