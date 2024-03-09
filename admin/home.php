@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php include("adminNavbar.php"); ?>
-<section class="bg-white">
+<section class="bg-white mt-16">
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-8 lg:px-12">
         <div class="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_d5f4bf67004e05149f3eac303f46819e/nspace.png" class="h-40" alt="Nspace Logo" />
