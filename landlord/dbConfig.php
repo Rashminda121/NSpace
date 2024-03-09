@@ -1,4 +1,5 @@
 <?php
+
 function dbCon()
 {
     $dbhost = "localhost";

@@ -2,13 +2,14 @@
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Hostel Management System</title>
 </head>
 <body>
-<?php include("../Navbar.php"); ?>
+
 <section class="bg-gradient-to-b from-blue-600 via-green-600 to-green-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      
+  <button onclick="window.history.back()" class="mt-4 mb-4 text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:ring-gray-800"> <i class="fas fa-arrow-left mr-2"></i>Back</button>
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -40,7 +41,7 @@ $valid_email = "nsbmadmin@gmail.com";
 $valid_password = "admin1234";
 
 if ($aemail == $valid_email && $apassword == $valid_password) {
-     echo "<script>location.href='/nspace/admin/home.php';</script>";    
+     echo "<script>location.href='home.php';</script>";    
 } else {
   echo "<script>alert('Invalid Credentials');</script>";
 }
