@@ -8,9 +8,16 @@ $accepted = accepted();
 $rejected = rejected();
 $pending = pending();
 
-$accPercent = ($accepted / $total) * 100;
-$rejPercent = ($rejected / $total) * 100;
-$pendPercent = ($pending / $total) * 100;
+if ($total != 0) {
+    $accPercent = ($accepted / $total) * 100;
+    $rejPercent = ($rejected / $total) * 100;
+    $pendPercent = ($pending / $total) * 100;
+} else {
+    $accPercent = 0;
+    $rejPercent = 0;
+    $pendPercent = 0;
+}
+
 function total()
 {
     if (isset($_GET['email'])) {
