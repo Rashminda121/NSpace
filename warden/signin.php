@@ -47,7 +47,7 @@ function sanitizeInput($data) {
     
 </head>
 <body>
-<?php include("../Navbar.php"); ?>
+
 <section class="bg-gradient-to-b from-blue-600 via-green-600 to-green-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
   <button onclick="window.history.back()" class="mt-4 mb-4 text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:ring-gray-800"> <i class="fas fa-arrow-left mr-2"></i>Back</button>
