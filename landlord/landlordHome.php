@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/866e8148a5.js" crossorigin="anonymous"></script>
-    <title>Landlord Dashboard</title>
+    <script src="navbar.js"></script>
+    <title>Land_lord Dashboard</title>
 </head>
 
 <body>
@@ -21,7 +22,8 @@
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-8 lg:px-12">
             <div class="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_d5f4bf67004e05149f3eac303f46819e/nspace.png"
-                    class="h-40" alt="Nspace Logo" />
+                    class="rounded-full mx-auto  w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+                    alt="Nspace Logo" />
             </div>
             <a href="#"
                 class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 "
