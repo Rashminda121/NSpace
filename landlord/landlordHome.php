@@ -11,6 +11,11 @@
 
 <body>
     <?php include("navbar.php"); ?>
+    <?php
+    if (isset($_GET['email'])) {
+
+        $email = $_GET['email'];
+    } ?>
     <section class="bg-white">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-8 lg:px-12">
             <div class="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
@@ -39,12 +44,12 @@
                     <i class="fa-solid fa-eye mr-2 -mb-1 justify-center w-5 h-5"></i>
                     View Ads
                 </a>
-                <a href="propertyAdd.php"
+                <a href="propertyAdd.php?email=<?php echo $email; ?>"
                     class="inline-flex justify-center items-center py-2 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
                     <i class="fa-solid fa-plus mr-2 -mb-1 justify-center w-5 h-5"></i>
                     Add Property
                 </a>
-                <a href="#"
+                <a href="propertyEdit.php?email=<?php echo $email; ?>"
                     class="inline-flex justify-center items-center py-2 px-4 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
                     <i class="fa-solid fa-pen-to-square mr-2 -mb-1 justify-center w-5 h-5"></i>
                     Edit Properties

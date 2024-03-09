@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form values
@@ -15,78 +18,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $negotiable = $_POST["negotiable"];
     $status = "false";
+    $email = "";
+
+    // Get email
+    if (isset($_GET['email'])) {
+        $email = $_GET['email'];
+    }
 
     // Image upload
-    $images = $_FILES['image'];
+    $filename = $_FILES['image']['name'];
+    $tmpName = $_FILES['image']['tmp_name'];
+    $error = $_FILES['image']['error'];
 
-    //num of images
-    $num_of_images = count($images['name']);
+    if ($error === 0) {
+        $img_ex = pathinfo($filename, PATHINFO_EXTENSION);
+        $img_ex_lc = strtolower($img_ex);
+        $allowed_exs = array('jpg', 'jpeg', 'png');
 
-    $uploaded_image_names = array(); // Array to store uploaded image names
+        if (in_array($img_ex_lc, $allowed_exs)) {
+            $newfilename = uniqid() . "." . $filename;
+            move_uploaded_file($tmpName, 'uploads/' . $newfilename);
 
-    for ($i = 0; $i < $num_of_images; $i++) {
-        $image_name = $images['name'][$i];
-        $tmp_name = $images['tmp_name'][$i];
-        $error = $images['error'][$i];
+            // Database connection
+            require_once('dbConfig.php');
+            $conn = dbCon();
 
-        if ($error === 0) {
-            $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);
-            $img_ex_lc = strtolower($img_ex);
-            $allowed_exs = array('jpg', 'jpeg', 'png');
-
-            if (in_array($img_ex_lc, $allowed_exs)) {
-                $new_image_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
-                //upload path
-                $image_upload_path = 'uploads/' . $new_image_name;
-                move_uploaded_file($tmp_name, $image_upload_path);
-
-                $uploaded_image_names[] = $new_image_name; // Store image name
-
-            } else {
-                echo "This file type can't upload, try jpg, jpeg or png !";
+            // Prepared statement to prevent SQL injection
+            $sql = "INSERT INTO landlorddata (title, bedrooms, bathrooms, landsize, unit, city, state, zipcode, address, description, price, negotiable, image, status, lemail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $sql);
+            if (!$stmt) {
+                die("Error preparing the statement: " . mysqli_error($conn));
             }
+
+            // Bind parameters
+            mysqli_stmt_bind_param($stmt, "ssssssssssdssss", $title, $bedroom, $bathroom, $land, $unit, $city, $state, $zipcode, $address, $desc, $price, $negotiable, $newfilename, $status, $email);
+
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                // Success
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+                header("Location: propertyAdd.php?success=true&email=$email");
+                exit();
+            } else {
+                $error = "Error executing the query: " . mysqli_error($conn);
+                header("Location: propertyAdd.php?error=$error&email=$email");
+            }
+
         } else {
-            echo "Unknown error occurred while uploading !";
+            $error = "This file type can't upload, try jpg, jpeg or png !";
+            header("Location: propertyAdd.php?error=$error&email=$email");
         }
-    }
-
-    // Serialize the array of image names
-    $serialized_images = serialize($uploaded_image_names);
-
-    // Database connection
-    require_once('dbConfig.php');
-    $conn = dbCon();
-
-    // Check if the connection was successful
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    // SQL statement
-    $sql = "INSERT INTO landlord (title, bedrooms, bathrooms, landsize, unit, city, state, zipcode, address, description, price, negotiable, image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    // Prepare the statement
-    $stmt = mysqli_prepare($conn, $sql);
-    if (!$stmt) {
-        die("Error preparing the statement: " . mysqli_error($conn));
-    }
-
-    // Bind parameters
-    mysqli_stmt_bind_param($stmt, "ssssssssssdsss", $title, $bedroom, $bathroom, $land, $unit, $city, $state, $zipcode, $address, $desc, $price, $negotiable, $serialized_images, $status);
-
-    // Execute the statement
-    if (mysqli_stmt_execute($stmt)) {
-        // Success
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
-        header("Location: propertyAdd.php?success=true");
-        exit();
     } else {
-        echo "Error executing the query: " . mysqli_error($conn);
-    }
+        $error = "Unknown error occurred while uploading !";
+        header("Location: propertyAdd.php?error=$error&email=$email");
 
+    }
 } else {
-    header("Location: propertyAdd.php");
+    header("Location: propertyAdd.php?email=$email");
     exit();
 }
 ?>

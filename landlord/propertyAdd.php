@@ -13,7 +13,12 @@
     <?php include("navbar.php"); ?>
     <?php
     session_start();
+    //get email
+    if (isset($_GET['email'])) {
 
+        $email = $_GET['email'];
+    }
+    //other
     if (isset($_GET['error'])) {
         // $_SESSION['error'] = $_GET['error'];
         $error = $_GET['error'];
@@ -62,8 +67,8 @@
     <script>
         document.getElementById('closeButton').addEventListener('click', function () {
             document.getElementById('errorContainer').style.display = 'none';
-            window.location.href = 'propertyAdd.php';
-            <?php //unset($_SESSION['error']);                                              ?>
+            window.location.href = 'propertyAdd.php?email=<?php echo $email ?>';
+            <?php //unset($_SESSION['error']);      ?>
         });
     </script>
 
@@ -75,7 +80,8 @@
 
     <div class="flex justify-center p-10 place-content-center mb-10">
 
-        <form action="propertyData.php" method="post" enctype="multipart/form-data" class="w-full max-w-lg">
+        <form action="propertyData.php?email=<?php echo $email ?>" method="post" enctype="multipart/form-data"
+            class="w-full max-w-lg">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
@@ -183,7 +189,7 @@
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="state">
-                        State
+                        State/ Province
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -254,7 +260,7 @@
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                         for="image">Image</label>
-                    <input type="file" id="image" name="image[]" accept=".jpg, .jpeg, .png" required multiple><br>
+                    <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required><br>
                 </div>
             </div>
             <hr><br>
