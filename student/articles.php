@@ -7,13 +7,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-white dark:bg-gray-900">
     <?php include ("Navbar.php"); ?>
     
     <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
             <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Articles</h2>
-            <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Exploring Ideas, Sharing Insights: Your Gateway to Inspiration on <br> Our Blog Page.</p>
+            <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Exploring Ideas, Sharing Insights. <br> Your Gateway to Inspiration on Our Blog Page.</p>
         </div>
         <div class="grid gap-8 lg:grid-cols-2">
             <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
