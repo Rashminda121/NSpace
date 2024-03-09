@@ -18,6 +18,10 @@
                   <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Title" required="">
               </div>
               <div class="sm:col-span-2">
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Author's Name</label>
+                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Title" required="">
+              </div>
+              <div class="sm:col-span-2">
                   <label for="date" class="block mb-2 text-sm font-medium text-gray-900 ">Date</label>
                   <input type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Date" required="">
               </div>
