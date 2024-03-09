@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/866e8148a5.js" crossorigin="anonymous"></script>
-    <title>Admin Dashboard</title>
+    <title>Land_lord Dashboard</title>
 </head>
 
 <body>
@@ -38,6 +38,11 @@
                     class="inline-flex justify-center items-center py-2 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
                     <i class="fa-solid fa-eye mr-2 -mb-1 justify-center w-5 h-5"></i>
                     View Ads
+                </a>
+                <a href="propertyAdd.php"
+                    class="inline-flex justify-center items-center py-2 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
+                    <i class="fa-solid fa-plus mr-2 -mb-1 justify-center w-5 h-5"></i>
+                    Add Property
                 </a>
                 <a href="#"
                     class="inline-flex justify-center items-center py-2 px-4 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
