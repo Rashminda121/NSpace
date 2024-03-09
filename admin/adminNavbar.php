@@ -1,4 +1,14 @@
-<nav class="bg-white border-gray-200 border-b">
+<html>
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Hostel Management System</title>
+    
+</head>
+<body>
+
+ <nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2">
     <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
         <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_d5f4bf67004e05149f3eac303f46819e/nspace.png" class="h-10" alt="Nspace Logo" />
@@ -31,3 +41,6 @@
     </div>
   </div>
 </nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>  
+</body>
+</html>
