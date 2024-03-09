@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/866e8148a5.js" crossorigin="anonymous"></script>
-    <title>Land_lord Dashboard</title>
+    <title>Landlord Dashboard</title>
 </head>
 
 <body>
