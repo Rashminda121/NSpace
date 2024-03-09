@@ -3,7 +3,7 @@
 
 CREATE DATABASE `nspacedb`;
 
-CREATE TABLE `nspacedb`.`landlord` (
+CREATE TABLE `nspacedb`.`landlorddata` (
   `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `title` VARCHAR(100) NULL,
   `bedrooms` VARCHAR(10) NULL,
@@ -18,5 +18,6 @@ CREATE TABLE `nspacedb`.`landlord` (
   `price` VARCHAR(45) NULL,
   `negotiable` VARCHAR(45) NULL,
   `image` TEXT(2000) NULL,
-  `status` VARCHAR(45) DEFAULT ('false')
+  `status` VARCHAR(45) DEFAULT ('false'),
+  'lemail' VARCHAR(45) NULL,
   );
