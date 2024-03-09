@@ -9,7 +9,7 @@
     <title>Land_lord</title>
 </head>
 
-<body>
+<body class="mt-20">
     <?php include("navbar.php"); ?>
     <?php
     session_start();
