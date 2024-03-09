@@ -1,3 +1,9 @@
+<?php
+if (isset($_GET['email'])) {
+
+  $email = $_GET['email'];
+} ?>
+
 <nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2">
     <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
