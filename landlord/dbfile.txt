@@ -1,0 +1,22 @@
+
+// nspacedb 
+
+CREATE DATABASE `nspacedb`;
+
+CREATE TABLE `nspacedb`.`landlord` (
+  `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `title` VARCHAR(100) NULL,
+  `bedrooms` VARCHAR(10) NULL,
+  `bathrooms` VARCHAR(10) NULL ,
+  `landsize` VARCHAR(45) NULL,
+  `unit` VARCHAR(45) NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(50) NULL,
+  `zipcode` VARCHAR(45) NULL,
+  `address` VARCHAR(200) NULL,
+  `description` VARCHAR(500) NULL,
+  `price` VARCHAR(45) NULL,
+  `negotiable` VARCHAR(45) NULL,
+  `image` TEXT(2000) NULL,
+  `status` VARCHAR(45) DEFAULT ('false')
+  );
