@@ -1,4 +1,4 @@
-<nav class="bg-white border-gray-200 border-b">
+<nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2">
     <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
         <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_d5f4bf67004e05149f3eac303f46819e/nspace.png" class="h-10" alt="Flowbite Logo" />

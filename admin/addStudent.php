@@ -8,9 +8,9 @@
 </head>
 <body>
 <?php include("adminNavbar.php"); ?>
-<section class="bg-white ">
+<section class="bg-white mt-16">
   <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-      <h2 class="mb-10 text-2xl font-bold text-gray-900">Let's add a new student.</h2>
+      <h2 class="mb-10 text-3xl text-center font-bold text-gray-900">Let's add a new student.</h2>
       <form action="addStudent.php" method="post">
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mt-16">
               <div class="w-full">
