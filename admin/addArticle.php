@@ -55,15 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = OpenCon();
     // Sanitize user input
     $title = sanitizeInput($_POST['title']);
+    $name = sanitizeInput($_POST['name']); // New
+    $date = sanitizeInput($_POST['date']); // New
     $content = sanitizeInput($_POST['content']);
     
-    $sql = "INSERT INTO article (title, content)
-            VALUES (?, ?)";
+    $sql = "INSERT INTO article (title, name, date, content) VALUES (?, ?, ?, ?)";
 
     try {
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $title, $content);
-
+        $stmt->bind_param("ssss", $title, $name, $date, $content); // Updated bind_param
+        
         $stmt->execute();
 
         $success_message = "Article posted successfully.";
@@ -78,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 </body>
 </html>
