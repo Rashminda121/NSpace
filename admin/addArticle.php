@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Add Article</title>
 </head>
@@ -10,7 +12,7 @@
 <?php include("adminNavbar.php"); ?>
 <section class="bg-white ">
   <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-      <h2 class="mb-10 text-2xl font-bold text-gray-900">Let's add a new article.</h2>
+      <h2 class="mb-10 text-2xl font-bold text-gray-900 ">Let's add a new article.</center></h2>
       <form action="addArticle.php" method="post">
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mt-16">
               <div class="sm:col-span-2">
@@ -80,6 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
