@@ -26,7 +26,7 @@
                   <p class="my-4">If you care for your time, I hands down would go with this."</p>
               </blockquote>
               <figcaption class="flex justify-center items-center space-x-3">
-                  <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
+                  <img class="w-9 h-9 rounded-full" src="image/blogP.png" alt="profile picture">
                   <div class="space-y-0.5 font-medium dark:text-white text-left">
                       <div>Bonnie Green</div>
                       <div class="text-sm font-light text-gray-500 dark:text-gray-400">Developer at Open AI</div>
@@ -40,7 +40,7 @@
                   <p class="my-4">Designing with Figma components that can be easily translated to the utility classes of Tailwind CSS is a huge timesaver!"</p>
               </blockquote>
               <figcaption class="flex justify-center items-center space-x-3">
-                  <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png" alt="profile picture">
+                  <img class="w-9 h-9 rounded-full" src="image/blogP.png" alt="profile picture">
                   <div class="space-y-0.5 font-medium dark:text-white text-left">
                       <div>Roberta Casas</div>
                       <div class="text-sm font-light text-gray-500 dark:text-gray-400">Lead designer at Dropbox</div>
