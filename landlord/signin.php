@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <?php include("../Navbar.php"); ?>
+    
     <section class="bg-gradient-to-b from-blue-600 via-green-600 to-green-900">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
