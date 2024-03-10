@@ -4,7 +4,7 @@ if (isset($_GET['email'])) {
   $email = $_GET['email'];
 } ?>
 
-<nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">
+<nav class="bg-white border-gray-200 border-b">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2">
     <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
       <img
@@ -25,7 +25,7 @@ if (isset($_GET['email'])) {
       <ul
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
         <li>
-          <a href="landlordHome.php"
+          <a href="landlordHome.php?email=<?php echo $email ?>"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2"
             aria-current="page">Home</a>
         </li>
@@ -34,11 +34,20 @@ if (isset($_GET['email'])) {
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Articles</a>
         </li>
         <li>
-          <a href="#"
-            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Feedbacks</a>
+          <a href="propertyView.php?email=<?php echo $email ?>"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Properties</a>
         </li>
         <li>
-          <a href="#"
+          <a href="wardenAccept.php?email=<?php echo $email ?>"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Warden
+            Accept</a>
+        </li>
+        <li>
+          <a href="./student/stViewProperty.php?email=<?php echo $email ?>"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Student</a>
+        </li>
+        <li>
+          <a href="landlordProfile.php?email=<?php echo $email ?>"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Profile</a>
         </li>
         <li>
@@ -46,7 +55,7 @@ if (isset($_GET['email'])) {
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Contact</a>
         </li>
         <li class="pl-3 pr-3">
-          <a href="#"
+          <a href="signin.php"
             class="block text-white rounded hover:bg-gray-100 md:hover:bg-green-800 md:border-0 md:hover:text-white md:p-2 bg-blue-800 p-3">Logout</a>
         </li>
       </ul>
