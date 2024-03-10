@@ -21,7 +21,7 @@ CloseCon($conn);
 <body class="bg-white dark:bg-gray-900">
     <?php include ("Navbar.php"); ?>
     
-    <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 mt-16">
         <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
             <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Articles</h2>
             <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Exploring Ideas, Sharing Insights. <br> Your Gateway to Inspiration on Our Blog Page.</p>
