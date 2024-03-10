@@ -9,7 +9,7 @@ $conn = dbCon();
 $email = $_GET['email'];
 
 // Retrieve data from the database
-$sql = "SELECT * FROM landlorddata WHERE lemail=?";
+$sql = "SELECT * FROM landlorddata WHERE lemail=? and status='false'";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "s", $email);
 mysqli_stmt_execute($stmt);
@@ -125,7 +125,7 @@ if (mysqli_num_rows($result) > 0) {
 
                 <hr>
                 <form action="wardenAcceptData.php?email=<?php echo $email ?>&currentid=<?php echo $row['id'] ?>" method="post"
-                    enctype="multipart/form-data" class="w-full max-w-lg">
+                    enctype="multipart/form-data" class="w-full max-w-lg shadow-xl p-10">
                     <div class="flex flex-wrap -mx-3 mb-6 text-left text-xl font-bold">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
@@ -312,8 +312,16 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="name">Status</label>
+                            <?php 
+                             if ($row['status'] == "false") {
+                                $view = "Pending";
+                            }else{
+                                $view = ucfirst($row['status']);
+
+                            } 
+                            ?>
                             <p><span class="text-blue-700 font-bold">Status: </span>
-                                <?php echo $row['status']; ?>
+                                <?php echo $view ?>
                             </p>
                         </div>
                     </div>

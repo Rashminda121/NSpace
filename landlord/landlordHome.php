@@ -42,7 +42,7 @@
                 NSBM undergraduate hostel management. Simplify daily tasks, streamline communication, and gain valuable
                 insights.</p>
             <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                <a href="/nspace/admin/addStudent.php"
+                <a href="propertyView.php?email=<?php echo $email ?>"
                     class="inline-flex justify-center items-center py-2 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
                     <i class="fa-solid fa-eye mr-2 -mb-1 justify-center w-5 h-5"></i>
                     View Ads
