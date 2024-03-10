@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/866e8148a5.js" crossorigin="anonymous"></script>
-    <title>Landlord Dashboard</title>
+    <script src="navbar.js"></script>
+    <title>Land_lord Dashboard</title>
 </head>
 
 <body>
     <?php include("navbar.php"); ?>
+    <?php include("propertyCount.php"); ?>
     <?php
     if (isset($_GET['email'])) {
 
@@ -20,7 +22,8 @@
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-8 lg:px-12">
             <div class="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_d5f4bf67004e05149f3eac303f46819e/nspace.png"
-                    class="h-40" alt="Nspace Logo" />
+                    class="rounded-full mx-auto  w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+                    alt="Nspace Logo" />
             </div>
             <a href="#"
                 class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 "
@@ -66,22 +69,24 @@
 
     <section class="bg-white mb-10">
         <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-2 lg:px-12">
-            <div class="grid grid-cols-9 gap-6 ">
+            <div class="grid grid-cols-12 gap-6 ">
                 <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
                     href="#">
                     <div class="p-5">
                         <div class="flex justify-between">
-                            <img src="images/ads.svg" class="h-7 w-7 text-blue-400" fill="none" viewBox="0 0 24 24"
+                            <img src="images/ads.png" class="h-7 w-7 text-blue-400" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                             </img>
                             <div
-                                class="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                <span class="flex items-center">0%</span>
+                                class="bg-blue-600 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                <span class="flex items-center">100%</span>
                             </div>
                         </div>
                         <div class="ml-2 w-full flex-1">
                             <div>
-                                <div class="mt-3 text-3xl font-bold leading-8">0</div>
+                                <div class="mt-3 text-3xl font-bold leading-8">
+                                    <?php echo $total ?>
+                                </div>
 
                                 <div class="mt-1 text-base text-gray-600">Curennt Ads</div>
                             </div>
@@ -92,19 +97,48 @@
                     href="#">
                     <div class="p-5">
                         <div class="flex justify-between">
-                            <img src="images/thumbs-up.svg" class="h-7 w-7 text-blue-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
+                            <img src="images/accept.png" class="h-7 w-7 text-blue-400" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
                             </img>
                             <div
-                                class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                <span class="flex items-center">0%</span>
+                                class="bg-green-600 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                <span class="flex items-center">
+                                    <?php echo $accPercent ?>%
+                                </span>
                             </div>
                         </div>
                         <div class="ml-2 w-full flex-1">
                             <div>
-                                <div class="mt-3 text-3xl font-bold leading-8">0</div>
+                                <div class="mt-3 text-3xl font-bold leading-8">
+                                    <?php echo $accepted ?>
+                                </div>
 
                                 <div class="mt-1 text-base text-gray-600">Accepted</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                    href="#">
+                    <div class="p-5">
+                        <div class="flex justify-between">
+                            <img src="images/decline.png" class="h-7 w-7 text-blue-400" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                            </img>
+                            <div
+                                class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                <span class="flex items-center">
+                                    <?php echo $rejPercent ?>%
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ml-2 w-full flex-1">
+                            <div>
+                                <div class="mt-3 text-3xl font-bold leading-8">
+                                    <?php echo $rejected ?>
+                                </div>
+
+                                <div class="mt-1 text-base text-gray-600">Not Accepted</div>
                             </div>
                         </div>
                     </div>
@@ -118,14 +152,18 @@
                             </img>
                             <div
                                 class="bg-yellow-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                <span class="flex items-center">0%</span>
+                                <span class="flex items-center">
+                                    <?php echo $pendPercent ?>%
+                                </span>
                             </div>
                         </div>
                         <div class="ml-2 w-full flex-1">
                             <div>
-                                <div class="mt-3 text-3xl font-bold leading-8">0</div>
+                                <div class="mt-3 text-3xl font-bold leading-8">
+                                    <?php echo $pending ?>
+                                </div>
 
-                                <div class="mt-1 text-base text-gray-600">Not Accepted</div>
+                                <div class="mt-1 text-base text-gray-600">Pending</div>
                             </div>
                         </div>
                     </div>
