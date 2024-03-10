@@ -8,8 +8,8 @@
     <style>
      
         #googleMap {
-            margin-left: 360px;
-            width: calc(100% - 360px);
+            margin-left: 360px; 
+            width: calc(100% - 360px); 
             height: 100vh;
         }
     </style>
@@ -19,7 +19,7 @@
     <div id="panel" class="h-full w-96 bg-gray-200 p-4 fixed left-0 top-0 overflow-y-auto"> 
         <h2 class="text-lg font-bold mb-4">Hostel Details</h2>
         <?php
-     
+       
         $servername = "localhost:3308";
         $username = "root";
         $password = "";
@@ -27,7 +27,6 @@
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
-     
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -36,9 +35,9 @@
         $sql = "SELECT * FROM Hostel_Details";
         $result = $conn->query($sql);
 
- 
+    
         if ($result->num_rows > 0) {
-   
+        
             while ($row = $result->fetch_assoc()) {
                 ?>
                 <div class="card border border-gray-400 p-4 mb-4 w-full transition-transform transform hover:translate-y-1 hover:shadow-md" style="box-sizing: border-box;"> <!-- Adjusted width to match the panel -->
@@ -72,13 +71,37 @@
             mapProp
         );
 
-  
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(6.8222, 80.04085), // NSBM Green University coordinates (latitude, longitude)
-            map: map,
-            title: "NSBM Green University, Sri Lanka",
-            animation: google.maps.Animation.BOUNCE,
-        });
+       
+        <?php
+     
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+     
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+       
+        $sql = "SELECT * FROM Hostel_Details";
+        $result = $conn->query($sql);
+
+    
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+                ?>
+          
+                var hostelMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(<?php echo $row["Latitude"]; ?>, <?php echo $row["Longitude"]; ?>),
+                    map: map,
+                    title: "<?php echo $row["Hostel_Name"]; ?>",
+                    animation: google.maps.Animation.DROP,
+                });
+                <?php
+            }
+        }
+
+        $conn->close();
+        ?>
     }
 </script>
 
