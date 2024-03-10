@@ -6,11 +6,23 @@
     <title>Hostel Map</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-     
+    
         #googleMap {
-            margin-left: 360px; 
+            margin-left: 360px;
             width: calc(100% - 360px); 
             height: 100vh;
+        }
+    
+        #hostelDetailsCard {
+            position: fixed;
+            bottom: 5%;
+            right: 5%;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
         }
     </style>
 </head>
@@ -19,7 +31,7 @@
     <div id="panel" class="h-full w-96 bg-gray-200 p-4 fixed left-0 top-0 overflow-y-auto"> 
         <h2 class="text-lg font-bold mb-4">Hostel Details</h2>
         <?php
-       
+      
         $servername = "localhost:3308";
         $username = "root";
         $password = "";
@@ -27,26 +39,25 @@
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
+     
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-   
+      
         $sql = "SELECT * FROM Hostel_Details";
         $result = $conn->query($sql);
 
-    
+ 
         if ($result->num_rows > 0) {
-        
+  
             while ($row = $result->fetch_assoc()) {
                 ?>
-                <div class="card border border-gray-400 p-4 mb-4 w-full transition-transform transform hover:translate-y-1 hover:shadow-md" style="box-sizing: border-box;"> <!-- Adjusted width to match the panel -->
+                <div class="card border border-gray-400 p-4 mb-4 w-full transition-transform transform hover:translate-y-1 hover:shadow-md"> <!-- Adjusted width to match the panel -->
                     <p><strong>Hostel ID:</strong> <?= $row["Hostel_ID"] ?></p>
                     <p><strong>Hostel Name:</strong> <?= $row["Hostel_Name"] ?></p>
                     <p><strong>No of Beds:</strong> <?= $row["No_Of_Beds"] ?></p>
                     <p><strong>Far:</strong> <?= $row["Far"] ?></p>
-                    <p><strong>Latitude:</strong> <?= $row["Latitude"] ?></p>
-                    <p><strong>Longitude:</strong> <?= $row["Longitude"] ?></p>
                 </div>
                 <?php
             }
@@ -60,6 +71,12 @@
     <div id="googleMap"></div>
 </div>
 
+<div id="hostelDetailsCard" class="bg-white p-4 rounded shadow-lg fixed bottom-5 right-5 hidden">
+    <h3 id="hostelName" class="font-bold text-lg mb-2"></h3>
+    <p id="noOfBeds"></p>
+    <p id="far"></p>
+</div>
+
 <script>
     function myMap() {
         var mapProp = {
@@ -71,9 +88,9 @@
             mapProp
         );
 
-       
+   
         <?php
-     
+    
         $conn = new mysqli($servername, $username, $password, $dbname);
 
      
@@ -81,20 +98,30 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-       
+   
         $sql = "SELECT * FROM Hostel_Details";
         $result = $conn->query($sql);
 
-    
+
         if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
+   
+            while ($row = $result->fetch_assoc()) {
                 ?>
-          
+      
                 var hostelMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(<?php echo $row["Latitude"]; ?>, <?php echo $row["Longitude"]; ?>),
                     map: map,
                     title: "<?php echo $row["Hostel_Name"]; ?>",
                     animation: google.maps.Animation.DROP,
+                });
+
+        
+                google.maps.event.addListener(hostelMarker, 'click', function() {
+        
+                    document.getElementById("hostelName").innerHTML = "<?php echo $row["Hostel_Name"]; ?>";
+                    document.getElementById("noOfBeds").innerHTML = "No of Beds: <?php echo $row["No_Of_Beds"]; ?>";
+                    document.getElementById("far").innerHTML = "Far: <?php echo $row["Far"]; ?>";
+                    document.getElementById("hostelDetailsCard").style.display = "block";
                 });
                 <?php
             }
