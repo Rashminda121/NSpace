@@ -36,7 +36,22 @@
         $sql = "SELECT * FROM Hostel_Details";
         $result = $conn->query($sql);
 
- 
+        // Display hostel details
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="border border-gray-400 p-4 mb-4">
+                    <p><strong>Hostel ID:</strong> <?= $row["Hostel_ID"] ?></p>
+                    <p><strong>Hostel Name:</strong> <?= $row["Hostel_Name"] ?></p>
+                    <p><strong>No of Beds:</strong> <?= $row["No_Of_Beds"] ?></p>
+                    <p><strong>Far:</strong> <?= $row["Far"] ?></p>
+                </div>
+                <?php
+            }
+        } else {
+            echo "0 results";
+        }
 
         $conn->close();
         ?>
