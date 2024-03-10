@@ -1,21 +1,27 @@
 <?php
 $servername = "localhost:3308";
 $username = "root";
-$password = "";
+$password = ""; 
 $dbname = "nspacedb";
 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
 $hostelID = $_POST['hostelID'];
 $hostelName = $_POST['hostelName'];
 $noOfBeds = $_POST['noOfBeds'];
 $far = $_POST['far'];
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
 
-$sql = "INSERT INTO Hostel_Details (Hostel_ID, Hostel_Name, No_Of_Beds, Far) VALUES ('$hostelID', '$hostelName', '$noOfBeds', '$far')";
+
+$sql = "INSERT INTO Hostel_Details (Hostel_ID, Hostel_Name, No_Of_Beds, Far, Latitude, Longitude) VALUES ('$hostelID', '$hostelName', '$noOfBeds', '$far', '$latitude', '$longitude')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

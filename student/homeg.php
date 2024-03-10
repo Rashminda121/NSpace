@@ -6,10 +6,10 @@
     <title>Hostel Map</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Style adjustments for map container */
+    
         #googleMap {
-            margin-left: 360px; /* Adjusted margin to make space for the larger panel */
-            width: calc(100% - 360px); /* Adjusted width to accommodate the larger panel */
+            margin-left: 360px; 
+            width: calc(100% - 360px);
             height: 100vh;
         }
     </style>
@@ -19,7 +19,7 @@
     <div id="panel" class="h-full w-96 bg-gray-200 p-4 fixed left-0 top-0 overflow-y-auto"> <!-- Adjusted width to make the panel even larger -->
         <h2 class="text-lg font-bold mb-4">Hostel Details</h2>
         <?php
-        // Database connection
+      
         $servername = "localhost:3308";
         $username = "root";
         $password = "";
@@ -27,18 +27,17 @@
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
+      
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Fetch hostel details
         $sql = "SELECT * FROM Hostel_Details";
         $result = $conn->query($sql);
 
-        // Display hostel details
+        
         if ($result->num_rows > 0) {
-            // Output data of each row
+      
             while ($row = $result->fetch_assoc()) {
                 ?>
                 <div class="border border-gray-400 p-4 mb-4">
@@ -70,7 +69,7 @@
             mapProp
         );
 
-        // Add marker
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(6.8222, 80.04085), // NSBM Green University coordinates (latitude, longitude)
             map: map,
