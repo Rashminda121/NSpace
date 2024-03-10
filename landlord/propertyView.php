@@ -45,11 +45,11 @@ if (mysqli_num_rows($result) > 0) {
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
-            <div class="flex justify-center p-10 place-content-center mb-10">
+            <div class="flex justify-center p-10 place-content-center mb-10 ">
 
                 <hr>
                 <form action="" method="post"
-                    enctype="multipart/form-data" class="w-full max-w-lg">
+                    enctype="multipart/form-data" class="w-full max-w-lg shadow-xl p-10">
                     <div class="flex flex-wrap -mx-3 mb-6 text-left text-xl font-bold">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
@@ -235,9 +235,25 @@ if (mysqli_num_rows($result) > 0) {
                     <hr><br>
                     <div class="flex flex-wrap -mx-3 mb-6 text-center">
                         <div class="w-full px-3">
-                            
-                            <p><span class="text-blue-700 font-bold">Status: </span>
-                                <?php echo $row['status']; ?>
+                            <?php if ($row['status'] == "reject"){
+                                $txtcol="red";
+                                
+                            }else if ($row['status'] == "false"){
+                                $txtcol = "yellow";
+                            }else{
+                                $txtcol = "blue";
+                            }
+                            if ($row['status'] == "false") {
+                                $view = "Pending";
+                            } else{
+                                $view = ucfirst($row['status']);
+
+
+                            }
+                                
+                            ?>
+                            <p class="text-lg"><span class="text-<?php echo $txtcol ?>-700 font-bold ">Status: </span>
+                                <?php echo $view ?>
                             </p>
                         </div>
                     </div>
