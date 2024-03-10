@@ -9,9 +9,10 @@ $rejected = rejected();
 $pending = pending();
 
 if ($total != 0) {
-    $accPercent = ($accepted / $total) * 100;
-    $rejPercent = ($rejected / $total) * 100;
-    $pendPercent = ($pending / $total) * 100;
+    $accPercent = round(($accepted / $total) * 100, 1);
+    $rejPercent = round(($rejected / $total) * 100, 1);
+    $pendPercent = round(($pending / $total) * 100, 1);
+
 } else {
     $accPercent = 0;
     $rejPercent = 0;

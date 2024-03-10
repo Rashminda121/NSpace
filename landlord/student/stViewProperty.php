@@ -3,15 +3,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-require_once('dbConfig.php');
+require_once('../dbConfig.php');
 $conn = dbCon();
 
 $email = $_GET['email'];
+$accept="accept";
 
 // Retrieve data from the database
-$sql = "SELECT * FROM landlorddata WHERE lemail=?";
+$sql = "SELECT * FROM landlorddata WHERE status=?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_bind_param($stmt, "s", $accept);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
@@ -45,11 +46,11 @@ if (mysqli_num_rows($result) > 0) {
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
-            <div class="flex justify-center p-10 place-content-center mb-10 ">
+            <div class="flex justify-center p-10 place-content-center mb-10">
 
                 <hr>
                 <form action="" method="post"
-                    enctype="multipart/form-data" class="w-full max-w-lg shadow-xl p-10">
+                    enctype="multipart/form-data" class="w-full max-w-lg">
                     <div class="flex flex-wrap -mx-3 mb-6 text-left text-xl font-bold">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
@@ -227,36 +228,9 @@ if (mysqli_num_rows($result) > 0) {
                   <div class="flex flex-wrap justify-center">
                      
                     <div class="w-full sm:w-2/5 px-2 mb-4 shadow-xl">
-                        <img src="uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
+                        <img src="../uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
                     </div>
                 </div>
-
-
-                    <hr><br>
-                    <div class="flex flex-wrap -mx-3 mb-6 text-center">
-                        <div class="w-full px-3">
-                            <?php if ($row['status'] == "reject"){
-                                $txtcol="red";
-                                
-                            }else if ($row['status'] == "false"){
-                                $txtcol = "yellow";
-                            }else{
-                                $txtcol = "blue";
-                            }
-                            if ($row['status'] == "false") {
-                                $view = "Pending";
-                            } else{
-                                $view = ucfirst($row['status']);
-
-
-                            }
-                                
-                            ?>
-                            <p class="text-lg"><span class="text-<?php echo $txtcol ?>-700 font-bold ">Status: </span>
-                                <?php echo $view ?>
-                            </p>
-                        </div>
-                    </div>
 
                     
                     <hr><br>
