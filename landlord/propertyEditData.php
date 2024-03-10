@@ -38,7 +38,7 @@ if (isset($_POST['edit'])) {
                 $newfilename = uniqid() . "." . $filename;
                 move_uploaded_file($tmpName, 'uploads/' . $newfilename);
 
-                $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, image=? WHERE id=? AND lemail=?";
+                $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, image=?, status='false'  WHERE id=? AND lemail=?";
                 $stmt = mysqli_prepare($conn, $sql);
                 if ($stmt) {
                     mysqli_stmt_bind_param($stmt, "sssssssssssssds", $newTitle, $newBedroom, $newBathroom, $newLand, $newUnit, $newCity, $newState, $newZipcode, $newAddress, $newDesc, $newPrice, $newNegotiable, $newfilename, $currentId, $email);
@@ -69,7 +69,7 @@ if (isset($_POST['edit'])) {
             exit();
         }
     } else {
-        $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=? WHERE id=? AND lemail=?";
+        $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, status='false' WHERE id=? AND lemail=?";
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "ssssssssssssds", $newTitle, $newBedroom, $newBathroom, $newLand, $newUnit, $newCity, $newState, $newZipcode, $newAddress, $newDesc, $newPrice, $newNegotiable, $currentId, $email);
