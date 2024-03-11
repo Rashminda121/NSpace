@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Hostel</title>
+    <style>
+     
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add Hostel</h1>
+    <form action="add_hostel.php" method="post">
+      <input
+        type="text"
+        name="hostelID"
+        placeholder="Hostel ID"
+        required
+      /><br />
+      <input
+        type="text"
+        name="hostelName"
+        placeholder="Hostel Name"
+        required
+      /><br />
+      <input
+        type="number"
+        name="noOfBeds"
+        placeholder="Number of Beds"
+        required
+      /><br />
+      <input type="text" name="far" placeholder="Far" required /><br />
+
+      <!-- Map interface -->
+      <div id="map"></div>
+      <input type="hidden" name="latitude" id="latitude" />
+      <input type="hidden" name="longitude" id="longitude" />
+
+      <button type="submit">Add Hostel</button>
+    </form>
+
+   
+    <script>
+      let map;
+      let marker;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 6.8222, lng: 80.04085 }, // Default center
+          zoom: 15,
+        });
+
+        map.addListener("click", (event) => {
+        
+          const clickedLocation = event.latLng;
+
+         
+          if (marker) {
+            marker.setMap(null);
+          }
+
+         
+          marker = new google.maps.Marker({
+            position: clickedLocation,
+            map: map,
+            draggable: true, 
+          });
+
+        
+          document.querySelector("#latitude").value = clickedLocation.lat();
+          document.querySelector("#longitude").value = clickedLocation.lng();
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7ngQlbbaL_qjsvJQp02PFTXc_gO916s8&callback=initMap"></script>
+  </body>
+</html>
