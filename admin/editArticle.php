@@ -28,6 +28,12 @@
                     <th scope="col" class="px-6 py-3">
                         Description
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -42,7 +48,6 @@
                         2024-03-12
                     </td>
                     <td class="px-6 py-4">
-                        test test test test test test test test test test test test test test test
                         test test test test test test test test test test test test test test test
                         test test test test test test test test test test test test test test test
                         test test test test test test test test test test test test test test test
