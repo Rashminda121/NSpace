@@ -17,38 +17,36 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Name
+                        Article Title
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Email
+                        Author's Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Subject
+                        Date
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Message
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
+                        Description
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        How to find good hostel
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        NSBM team
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        2024-03-12
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        test test test test test test test test test test test test test test test
+                        test test test test test test test test test test test test test test test
+                        test test test test test test test test test test test test test test test
+                        test test test test test test test test test test test test test test test
+                        test test test test test test test test test test test test test test test
                     </td>
                     <td class="px-6 py-4">
                         <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
