@@ -6,10 +6,10 @@ $conn = OpenCon();
 $sql = "SELECT * FROM article";
 $result = $conn->query($sql);
 
-$addArticle = [];
+$article = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $addArticle[] = $row;
+        $article[] = $row;
     }
 }
 
@@ -55,19 +55,19 @@ CloseCon($conn);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($addArticle as $addArticle) : ?>
+            <?php foreach ($article as $article) : ?>
     <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <?php echo htmlspecialchars($addArticle['title']); ?>
+            <?php echo htmlspecialchars($article['title']); ?>
         </th>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addArticle['name']); ?>
+            <?php echo htmlspecialchars($article['name']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addArticle['date']); ?>
+            <?php echo htmlspecialchars($article['date']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addArticle['content']); ?>
+            <?php echo htmlspecialchars($article['content']); ?>
         </td>
         <td class="px-6 py-4">
             <a href="editArticle.php?id=<?php echo $editArticle['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
