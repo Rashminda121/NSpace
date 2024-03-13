@@ -7,45 +7,45 @@ $conn = OpenCon();
 
 // Check if feedback id is provided in the URL
 if(isset($_GET['id'])) {
-    $feedback_id = $_GET['id'];
+    $article_id = $_GET['id'];
     
     // Retrieve feedback details from the database based on the provided id
-    $sql = "SELECT * FROM feedback WHERE id=?";
+    $sql = "SELECT * FROM article WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $feedback_id);
+    $stmt->bind_param("i", $article_id);
     $stmt->execute();
     $result = $stmt->get_result();
     
     if($result->num_rows === 1) {
         // Fetch feedback details
-        $feedback = $result->fetch_assoc();
+        $article = $result->fetch_assoc();
     } else {
         // No feedback found with the provided id
-        echo "Feedback not found.";
+        echo "article not found.";
         exit;
     }
 } else {
     // Feedback id is not provided in the URL
-    echo "Feedback id is missing.";
+    echo "article id is missing.";
     exit;
 }
 
 // Handle form submission for updating the feedback
-if(isset($_POST['update_feedback'])) {
+if(isset($_POST['update_article'])) {
     // Retrieve form data
+    $title = $_POST['title'];
     $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+    $date = $_POST['date'];
+    $content = $_POST['content'];
     
     // Update feedback details in the database
-    $sql = "UPDATE feedback SET name=?, email=?, subject=?, message=? WHERE id=?";
+    $sql = "UPDATE article SET title=?, name=?, date=?, content=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssi", $name, $email, $subject, $message, $feedback_id);
+    $stmt->bind_param("ssssi", $title, $name, $date, $content, $article_id);
     $stmt->execute();
     
     // Redirect to the page where feedbacks are listed after update
-    header("Location: feedbackEdit.php");
+    header("Location: editArticle.php");
     exit;
 }
 ?>
@@ -64,16 +64,16 @@ if(isset($_POST['update_feedback'])) {
     <section class="bg-white dark:bg-gray-900 mt-16">
 
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-  <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Edit Feedback</h2>
+  <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Edit Article</h2>
     <form action="" method="POST" class="space-y-8">
        
         <div>
-              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-              <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $feedback['name']; ?>">
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Article Title</label>
+              <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['name']; ?>">
           </div>
           <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-              <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $feedback['email']; ?>" placeholder="name@flowbite.com" required>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Author's Name</label>
+              <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['email']; ?>" placeholder="name@flowbite.com" required>
           </div>
           <div>
               <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
