@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $negotiable = $_POST["negotiable"];
     $status = "false";
-    $proname = $_POST["name"];
     $laititude = $_POST["lat"];
     $longitude = $_POST["lon"];
     $email = "";
