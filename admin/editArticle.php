@@ -3,7 +3,7 @@
 require_once("dbconfig.php");
 
 $conn = OpenCon();
-$sql = "SELECT * FROM addArticle";
+$sql = "SELECT * FROM article";
 $result = $conn->query($sql);
 
 $addArticle = [];
