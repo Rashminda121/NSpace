@@ -1,3 +1,21 @@
+<?php
+// Fetch feedback from the database
+require_once("dbconfig.php");
+
+$conn = OpenCon();
+$sql = "SELECT * FROM article";
+$result = $conn->query($sql);
+
+$article = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $article[] = $row;
+    }
+}
+
+CloseCon($conn);
+?>
+
 <html>
 
 <head>
@@ -37,30 +55,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        How to find good hostel
-                    </th>
-                    <td class="px-6 py-4">
-                        NSBM team
-                    </td>
-                    <td class="px-6 py-4">
-                        2024-03-12
-                    </td>
-                    <td class="px-6 py-4">
-                        test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-                    </td>
-                </tr>
-                
+            <?php foreach ($article as $article) : ?>
+    <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <?php echo htmlspecialchars($article['title']); ?>
+        </th>
+        <td class="px-6 py-4">
+            <?php echo htmlspecialchars($article['name']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <?php echo htmlspecialchars($article['date']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <?php echo htmlspecialchars($article['content']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <a href="editArticle.php?id=<?php echo $editArticle['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+        </td>
+        <td class="px-6 py-4">
+            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+
             </tbody>
         </table>
         </div>
