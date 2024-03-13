@@ -68,7 +68,7 @@
         document.getElementById('closeButton').addEventListener('click', function () {
             document.getElementById('errorContainer').style.display = 'none';
             window.location.href = 'propertyAdd.php?email=<?php echo $email ?>';
-            <?php //unset($_SESSION['error']);      ?>
+            <?php //unset($_SESSION['error']);                                                                                                                                                      ?>
         });
     </script>
 
@@ -90,6 +90,17 @@
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="title" name="title" type="text" placeholder="Title" required>
+                </div>
+
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                        Property Name
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="name" name="name" type="text" placeholder="Name" required>
                 </div>
 
             </div>
@@ -153,7 +164,7 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="land" type="text" placeholder="Size" name="land" required>
+                        id="land" type="number" placeholder="Size" name="land" required>
                 </div>
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="unit">
@@ -264,6 +275,48 @@
                 </div>
             </div>
             <hr><br>
+
+            <!-- //map -->
+            <div class="flex flex-wrap items-center justify-center -mx-3 mb-6">
+                <div id="map" style="width:100%;height:400px;"></div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="lon">
+                        Latitude
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="lat" type="text" placeholder="Latitude" name="lat" required>
+                </div>
+                <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="lon">
+                        Longitude
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="lon" type="text" placeholder="Longitude" name="lon" required>
+                </div>
+                <!-- //get location butttton -->
+                <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="btn">
+                        Get Current Location
+                    </label>
+                    <button id="btn" name="btn" type="button"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-7 rounded">
+                        Get Location
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- //map -->
+            <hr><br>
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -303,6 +356,126 @@
 
     </div>
     <?php include("footer.php"); ?>
+
+    <!-- --map-- -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var map = new google.maps.Map(document.getElementById("map"), {
+                center: new google.maps.LatLng(6.82163802690581, 80.04154070852864),
+                zoom: 8,
+            });
+
+
+
+            //nsbm marker
+            var NSBMmarker = new google.maps.Marker({
+                position: { lat: 6.820996372680341, lng: 80.03984441709781 },
+                title: "NSBM Green University",
+                map: map,
+                //animation: google.maps.Animation.BOUNCE,
+                draggable: true,
+                icon: "./map/nsbmMarker.png"
+            });
+
+            let popupContent = new google.maps.InfoWindow();
+
+            google.maps.event.addListener(NSBMmarker, "click", (function (NSBMmarker) {
+                return function () {
+                    popupContent.setContent("NSBM Green University")
+                    popupContent.open(map, NSBMmarker)
+                }
+            })(NSBMmarker));
+
+            // NSBM zoom in marker
+            google.maps.event.addListener(NSBMmarker, 'click', function () {
+                var pos = map.getZoom();
+                map.setZoom(17);
+                map.setCenter(NSBMmarker.getPosition());
+                window.setTimeout(function () { map.setZoom(pos); }, 20000);
+            });
+
+
+            // nsbm circle
+            map.data.loadGeoJson('map/data/data.json')
+            map.data.setStyle({
+                fillColor: '#35d016',
+                strokeColor: '#0b751c',
+                fillOpacity: 0.1
+            });
+
+
+            //marker get location
+            google.maps.event.addListener(map, 'click', function (event) {
+                var marker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map,
+                    icon: "map/pin2.png",
+                    animation: google.maps.Animation.BOUNCE
+                });
+
+                // Set latitude and longitude values to input fields
+                document.getElementById('lat').value = event.latLng.lat();
+                document.getElementById('lon').value = event.latLng.lng();
+
+                // zoom in marker
+                google.maps.event.addListener(marker, 'click', function () {
+                    var pos = map.getZoom();
+                    map.setZoom(15);
+                    map.setCenter(marker.getPosition());
+                    window.setTimeout(function () { map.setZoom(pos); }, 20000);
+                });
+
+                // Remove the marker after 5 seconds
+                setTimeout(function () {
+                    marker.setMap(null);
+                }, 10000);
+            });
+
+
+            // Get location by button
+            document.getElementById('btn').addEventListener('click', function () {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const currentLocation = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+
+                            // Set latitude and longitude values to input fields
+                            document.getElementById('lat').value = currentLocation.lat;
+                            document.getElementById('lon').value = currentLocation.lng;
+
+                            // Add marker for current location
+                            const marker = new google.maps.Marker({
+                                position: currentLocation,
+                                map: map,
+                                animation: google.maps.Animation.BOUNCE,
+                                icon: "map/pin.png"
+                            });
+
+                            map.setCenter(currentLocation);
+                            var pos = 8;
+                            map.setZoom(11);
+                            window.setTimeout(function () { map.setZoom(pos); }, 20000);
+
+                            // Remove marker after 5 seconds
+                            setTimeout(() => {
+                                marker.setMap(null);
+                            }, 10000);
+
+                        }
+                    );
+                } else {
+                    alert('Geolocation is not supported by this browser.');
+                }
+            });
+
+
+        });
+    </script>
 
 </body>
 

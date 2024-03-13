@@ -12,6 +12,7 @@ $currentId = $_GET['currentid'];
 // Edit Action
 if (isset($_POST['edit'])) {
     $newTitle = $_POST['title'];
+    $proname = $_POST["name"];//
     $newBedroom = $_POST['bedrooms'];
     $newBathroom = $_POST['bathroom'];
     $newLand = $_POST['land'];
@@ -23,6 +24,9 @@ if (isset($_POST['edit'])) {
     $newDesc = $_POST['description'];
     $newPrice = $_POST['price'];
     $newNegotiable = $_POST['negotiable'];
+    $laititude = $_POST["lat"];
+    $longitude = $_POST["lon"];
+    $status = 'false';
 
     // Image upload
     $filename = $_FILES['image']['name'];
@@ -38,10 +42,10 @@ if (isset($_POST['edit'])) {
                 $newfilename = uniqid() . "." . $filename;
                 move_uploaded_file($tmpName, 'uploads/' . $newfilename);
 
-                $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, image=?, status='false'  WHERE id=? AND lemail=?";
+                $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, image=?, status=?,latitude=? ,longitud=?,proname=?  WHERE id=? AND lemail=?";
                 $stmt = mysqli_prepare($conn, $sql);
                 if ($stmt) {
-                    mysqli_stmt_bind_param($stmt, "sssssssssssssds", $newTitle, $newBedroom, $newBathroom, $newLand, $newUnit, $newCity, $newState, $newZipcode, $newAddress, $newDesc, $newPrice, $newNegotiable, $newfilename, $currentId, $email);
+                    mysqli_stmt_bind_param($stmt, "sssssssssssssssssds", $newTitle, $newBedroom, $newBathroom, $newLand, $newUnit, $newCity, $newState, $newZipcode, $newAddress, $newDesc, $newPrice, $newNegotiable, $newfilename, $status, $laititude, $longitude, $proname, $currentId, $email);
                     mysqli_stmt_execute($stmt);
 
                     // Check if any rows were affected
@@ -69,10 +73,10 @@ if (isset($_POST['edit'])) {
             exit();
         }
     } else {
-        $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, status='false' WHERE id=? AND lemail=?";
+        $sql = "UPDATE landlorddata SET title=?, bedrooms=?, bathrooms=?, landsize=?, unit=?, city=?, state=?, zipcode=?, address=?, description=?, price=?, negotiable=?, status=?,latitude=? ,longitude=?,proname=? WHERE id=? AND lemail=?";
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ssssssssssssds", $newTitle, $newBedroom, $newBathroom, $newLand, $newUnit, $newCity, $newState, $newZipcode, $newAddress, $newDesc, $newPrice, $newNegotiable, $currentId, $email);
+            mysqli_stmt_bind_param($stmt, "ssssssssssssssssds", $newTitle, $newBedroom, $newBathroom, $newLand, $newUnit, $newCity, $newState, $newZipcode, $newAddress, $newDesc, $newPrice, $newNegotiable, $status, $laititude, $longitude, $proname, $currentId, $email);
 
             // Execute the statement
             if (mysqli_stmt_execute($stmt)) {
