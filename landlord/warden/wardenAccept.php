@@ -4,14 +4,15 @@ ini_set('display_errors', 1);
 
 // Database connection
 require_once('dbConfig.php');
-$conn = OpenCon();
+$conn = dbCon();
 
 $email = $_GET['email'];
+$status="false";
 
 // Retrieve data from the database
-$sql = "SELECT * FROM landlorddata WHERE lemail=? and status='false'";
+$sql = "SELECT * FROM landlorddata WHERE status=?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_bind_param($stmt, "s", $status);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
