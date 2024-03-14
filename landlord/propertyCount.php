@@ -30,7 +30,7 @@ function total()
     }
 
     require_once('dbConfig.php');
-    $conn = dbCon();
+    $conn = OpenCon();
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
@@ -67,7 +67,7 @@ function accepted()
     }
 
     require_once('dbConfig.php');
-    $conn = dbCon();
+    $conn = OpenCon();
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
@@ -104,7 +104,7 @@ function rejected()
     }
 
     require_once('dbConfig.php');
-    $conn = dbCon();
+    $conn = OpenCon();
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
@@ -140,7 +140,7 @@ function pending()
     }
 
     require_once('dbConfig.php');
-    $conn = dbCon();
+    $conn = OpenCon();
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());

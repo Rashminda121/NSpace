@@ -1,15 +1,14 @@
 <?php
-function dbCon()
+function OpenCon()
 {
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbpass = "12345678";
-    $dbname = "nspacedb";
-    $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname) or die("Connect failed: %s\n" . $conn->error);
-    return $conn;
+$dbhost = "localhost";
+$dbuser = "root";
+$dbpass = "avi";
+$dbname = "nspacedb";
+$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname) or die("Connect failed: %s\n". $conn -> error);
+return $conn;
 }
-function conClose($conn)
+function CloseCon($conn)
 {
-    $conn->close();
+$conn -> close();
 }
-?>
