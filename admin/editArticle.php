@@ -1,6 +1,6 @@
 <?php
 // Fetch feedback from the database
-require_once("dbconfig.php");
+require_once("dbConfig.php");
 
 $conn = OpenCon();
 $sql = "SELECT * FROM article";
