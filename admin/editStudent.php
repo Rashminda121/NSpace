@@ -70,7 +70,7 @@ CloseCon($conn);
             <?php echo htmlspecialchars($addStudent['content']); ?>
         </td>
         <td class="px-6 py-4">
-            <a href="edit_Student.php?id=<?php echo $article['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <a href="edit_Student.php?id=<?php echo $addStudent['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
