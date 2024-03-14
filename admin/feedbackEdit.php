@@ -12,7 +12,13 @@ if ($result->num_rows > 0) {
         $feedbacks[] = $row;
     }
 }
-
+if (isset($_GET['delete'])) {
+    // $_SESSION['error'] = $_GET['error'];
+    $error = "Successfully Property deleted!";
+    $bgcolour = "bg-orange-100 border-orange-400 text-orange-700";
+    $text = "Success : ";
+    $tcol = "text-orange-500";
+}
 CloseCon($conn);
 ?>
 
@@ -73,8 +79,10 @@ CloseCon($conn);
             <a href="edit_Feedback.php?id=<?php echo $feedback['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
-            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+            <button type="submit" name="delete"
+            class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
         </td>
+       
     </tr>
 <?php endforeach; ?>
 
