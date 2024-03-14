@@ -1,15 +1,12 @@
 <?php
-// Include the dbConfig.php file to establish a database connection
 require_once("dbConfig.php");
 
-// Open a connection to the database
 $conn = OpenCon();
 
-// Check if feedback id is provided in the URL
 if(isset($_GET['id'])) {
     $article_id = $_GET['id'];
     
-    // Retrieve feedback details from the database based on the provided id
+    
     $sql = "SELECT * FROM article WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $article_id);
@@ -17,34 +14,28 @@ if(isset($_GET['id'])) {
     $result = $stmt->get_result();
     
     if($result->num_rows === 1) {
-        // Fetch feedback details
         $article = $result->fetch_assoc();
     } else {
-        // No feedback found with the provided id
         echo "article not found.";
         exit;
     }
 } else {
-    // Feedback id is not provided in the URL
     echo "article id is missing.";
     exit;
 }
 
-// Handle form submission for updating the feedback
 if(isset($_POST['update_article'])) {
-    // Retrieve form data
+
     $title = $_POST['title'];
     $name = $_POST['name'];
     $date = $_POST['date'];
     $content = $_POST['content'];
     
-    // Update feedback details in the database
     $sql = "UPDATE article SET title=?, name=?, date=?, content=? WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssi", $title, $name, $date, $content, $article_id);
     $stmt->execute();
     
-    // Redirect to the page where feedbacks are listed after update
     header("Location: editArticle.php");
     exit;
 }
@@ -77,15 +68,15 @@ if(isset($_POST['update_article'])) {
           </div>
           <div>
               <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
-              <input type="date" id="date" name="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['subject']; ?>" placeholder="date" required>
+              <input type="date" id="date" name="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['date']; ?>" placeholder="date" required>
           </div>
         
           <div class="sm:col-span-2">
-              <label for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Description</label>
-              <textarea id="message" name="Description" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."><?php echo $feedback['message']; ?></textarea>
+              <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Description</label>
+              <textarea id="message" name="content" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."><?php echo $feedback['content']; ?></textarea>
           </div>
        
-          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="update_feedback" value="Update Feedback">Update Feedback</button>
+          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="update_article" value="Update article">Update Feedback</button>
         
         
     </form>
