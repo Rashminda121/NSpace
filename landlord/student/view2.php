@@ -99,6 +99,18 @@ $result = mysqli_stmt_get_result($stmt);
                             style="height:100%;max-height: 200px;overflow: hidden;" alt="Nspace Logo" />
                     </div>
                 </div>
+                <div class="flex flex-wrap -mx-4 mb-6 pl-6">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pl-4"
+                            for="bedroom">Property</label>
+                        <p id="bedroom" name="bedroom"
+                            class="appearance-none block w-full  text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <span class="">
+                                <?php echo $row['proname']; ?>
+                            </span>
+                        </p>
+                    </div>
+                </div>
                 <div class="p-5">
 
                     <div class="flex flex-wrap -mx-3 mb-6">

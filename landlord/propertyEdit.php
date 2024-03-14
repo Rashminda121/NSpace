@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 // Database connection
 require_once('dbConfig.php');
-$conn = dbCon();
+$conn = OpenCon();
 
 $email = $_GET['email'];
 
@@ -142,6 +142,18 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
 
                     </div>
+                     <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                                Property Name
+                            </label>
+                            <input
+                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="name" name="name" type="text" placeholder="Name" value="<?php echo $row['proname']; ?>" required>
+                                <?php $proname=$row['proname']; ?>
+                        </div>
+
+                    </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
 
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -171,7 +183,7 @@ if (mysqli_num_rows($result) > 0) {
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="land" type="text" placeholder="Size" name="land" value="<?php echo $row['landsize']; ?>"
+                                id="land" type="number" placeholder="Size" name="land" value="<?php echo $row['landsize']; ?>"
                                 <?php echo $req ? 'required' : ''; ?>>
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -250,7 +262,7 @@ if (mysqli_num_rows($result) > 0) {
                                 for="description">Description:</label>
                             <textarea id="description" name="description" rows="4" cols="50"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                placeholder="Description" name="description" <?php echo $req ? 'required' : ''; ?>> <?php echo $row['description']; ?> </textarea>
+                                placeholder="Description" name="description" <?php echo $req ? 'required' : ''; ?>><?php echo $row['description']; ?></textarea>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -318,7 +330,7 @@ if (mysqli_num_rows($result) > 0) {
                         </label>
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="lat" type="text" placeholder="Latitude" name="lat" required>
+                            id="lat<?php echo $row['id'] ?>" type="text" placeholder="Latitude" name="lat" value="<?php echo $row['latitude']; ?>" required>
                     </div>
                     <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="lon">
@@ -326,19 +338,20 @@ if (mysqli_num_rows($result) > 0) {
                         </label>
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="lon" type="text" placeholder="Longitude" name="lon" required>
+                            id="lon<?php echo $row['id'] ?>" type="text" placeholder="Longitude" name="lon" value="<?php echo $row['longitude']; ?>" required>
                     </div>
                     <!-- //get location butttton -->
                     <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="btn">
                             Get Current Location
                         </label>
-                        <button id="btn" name="btn" type="button"
+                        <button id="btn<?php echo $row['id'] ?>" name="btn" type="button"
                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-7 rounded">
                             Get Location
                         </button>
 
                     </div>
+                    <?php $lat=$row['latitude'];$lon=$row['longitude']; ?>
 
                 </div>
                 <!-- --map-- -->
@@ -391,6 +404,41 @@ if (mysqli_num_rows($result) > 0) {
                     });
 
 
+                    //old marker
+                    
+                    // user marker
+                    
+                    var lat = ' . $lat . ';
+                    var lon = ' . $lon . ';
+                    var proname = "' . $proname . '";
+
+                    var usermarker = new google.maps.Marker({
+                        position: { lat: lat, lng: lon },
+                        title: "User Marker",
+                        map: map,
+                        //animation: google.maps.Animation.BOUNCE,
+                        //draggable: true,
+                        icon: "./map/pin.png"
+                    });
+
+                    let popupContent2 = new google.maps.InfoWindow();
+
+                    google.maps.event.addListener(usermarker, "click", (function (usermarker) {
+                        return function () {
+                            popupContent2.setContent(proname)
+                            popupContent2.open(map, usermarker)
+                        }
+                    })(usermarker));
+
+                    //  zoom in marker
+                    google.maps.event.addListener(usermarker, \'click\', function () {
+                        var pos = map.getZoom();
+                        map.setZoom(17);
+                        map.setCenter(usermarker.getPosition());
+                        window.setTimeout(function () { map.setZoom(pos); }, 20000);
+                    });
+
+
                     // Marker get location
                     google.maps.event.addListener(map, \'click\', function (event) {
                         var marker = new google.maps.Marker({
@@ -401,8 +449,8 @@ if (mysqli_num_rows($result) > 0) {
                         });
 
                         // Set latitude and longitude values to input fields
-                        document.getElementById(\'lat\').value = event.latLng.lat();
-                        document.getElementById(\'lon\').value = event.latLng.lng();
+                        document.getElementById(\'lat'. $row['id'] .'\').value = event.latLng.lat();
+                        document.getElementById(\'lon'. $row['id'] .'\').value = event.latLng.lng();
 
                         // Zoom in marker
                         google.maps.event.addListener(marker, \'click\', function () {
@@ -420,7 +468,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
                     // Get location by button
-                    document.getElementById(\'btn\').addEventListener(\'click\', function () {
+                    document.getElementById(\'btn' . $row['id'] . '\').addEventListener(\'click\', function () {
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition(
                                 (position) => {
@@ -430,8 +478,8 @@ if (mysqli_num_rows($result) > 0) {
                                     };
 
                                     // Set latitude and longitude values to input fields
-                                    document.getElementById(\'lat\').value = currentLocation.lat;
-                                    document.getElementById(\'lon\').value = currentLocation.lng;
+                                    document.getElementById(\'lat' . $row['id'] . '\').value = currentLocation.lat;
+                                    document.getElementById(\'lon' . $row['id'] . '\').value = currentLocation.lng;
 
                                     // Add marker for current location
                                     const marker = new google.maps.Marker({

@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 // Database connection
 require_once('dbConfig.php');
-$conn = dbCon();
+$conn = conn();
 
 $email = $_GET['email'];
 $currentId = $_GET['id'];

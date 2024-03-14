@@ -68,7 +68,7 @@
         document.getElementById('closeButton').addEventListener('click', function () {
             document.getElementById('errorContainer').style.display = 'none';
             window.location.href = 'propertyAdd.php?email=<?php echo $email ?>';
-            <?php //unset($_SESSION['error']);                                                                                                                                                     ?>
+            <?php //unset($_SESSION['error']);                                                                                                                                                      ?>
         });
     </script>
 
@@ -164,7 +164,7 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="land" type="text" placeholder="Size" name="land" required>
+                        id="land" type="number" placeholder="Size" name="land" required>
                 </div>
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="unit">
@@ -359,7 +359,7 @@
 
     <!-- --map-- -->
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var map = new google.maps.Map(document.getElementById("map"), {

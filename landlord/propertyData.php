@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $negotiable = $_POST["negotiable"];
     $status = "false";
-    $proname = $_POST["name"];
     $laititude = $_POST["lat"];
     $longitude = $_POST["lon"];
     $email = "";
@@ -41,14 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (in_array($img_ex_lc, $allowed_exs)) {
             $newfilename = uniqid() . "." . $filename;
-            move_uploaded_file($tmpName, 'uploads/' . $newfilename);
+            $imagePath = 'images/' . $newfilename; // Change 'your_desired_image_path' to your desired directory
+            move_uploaded_file($tmpName, $imagePath);
+
 
             // Database connection
             require_once('dbConfig.php');
-            $conn = dbCon();
+            $conn = OpenCon();
 
             // Prepared statement to prevent SQL injection
             $sql = "INSERT INTO landlorddata (title, bedrooms, bathrooms, landsize, unit, city, state, zipcode, address, description, price, negotiable, image, status, lemail,latitude,longitude,proname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
+
             $stmt = mysqli_prepare($conn, $sql);
             if (!$stmt) {
                 die("Error preparing the statement: " . mysqli_error($conn));
