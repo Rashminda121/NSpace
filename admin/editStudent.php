@@ -3,13 +3,13 @@
 require_once("dbConfig.php");
 
 $conn = OpenCon();
-$sql = "SELECT * FROM article";
+$sql = "SELECT * FROM addStudent";
 $result = $conn->query($sql);
 
 $article = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $article[] = $row;
+        $addStudent[] = $row;
     }
 }
 
@@ -55,22 +55,22 @@ CloseCon($conn);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($article as $article) : ?>
+            <?php foreach ($addStudent as $addStudent) : ?>
     <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <?php echo htmlspecialchars($article['title']); ?>
+            <?php echo htmlspecialchars($addStudent['title']); ?>
         </th>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($article['name']); ?>
+            <?php echo htmlspecialchars($addStudent['name']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($article['date']); ?>
+            <?php echo htmlspecialchars($addStudent['date']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($article['content']); ?>
+            <?php echo htmlspecialchars($addStudent['content']); ?>
         </td>
         <td class="px-6 py-4">
-            <a href="edit_article.php?id=<?php echo $article['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <a href="edit_Student.php?id=<?php echo $addStudent['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>

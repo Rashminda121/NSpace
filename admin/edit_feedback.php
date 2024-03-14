@@ -48,6 +48,32 @@ if(isset($_POST['update_feedback'])) {
     header("Location: feedbackEdit.php");
     exit;
 }
+// Delete Action
+if (isset($_POST['delete'])) {
+    $sql = "DELETE FROM feedback WHERE id=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $feedback_id); // Use "i" for integer
+        mysqli_stmt_execute($stmt);
+
+        // Check if any rows were affected
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            header("Location: feedbackEdit.php?delete=1");
+            exit();
+        } else {
+            // Handle no rows affected error
+            header("Location: feedbackEdit.php?error=No feedback found to delete");
+            exit();
+        }
+    } else {
+        // Handle SQL error
+        header("Location: feedbackEdit.php?error=" . mysqli_error($conn));
+        exit();
+    }
+}
+
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
