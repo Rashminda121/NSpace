@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form values
     $title = $_POST["title"];
+    $proname = $_POST["name"];
     $bedroom = $_POST["bedroom"];
     $bathroom = $_POST["bathroom"];
     $land = $_POST["land"];
@@ -18,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $negotiable = $_POST["negotiable"];
     $status = "false";
+    $laititude = $_POST["lat"];
+    $longitude = $_POST["lon"];
     $email = "";
 
     // Get email
@@ -44,14 +47,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn = dbCon();
 
             // Prepared statement to prevent SQL injection
-            $sql = "INSERT INTO landlorddata (title, bedrooms, bathrooms, landsize, unit, city, state, zipcode, address, description, price, negotiable, image, status, lemail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO landlorddata (title, bedrooms, bathrooms, landsize, unit, city, state, zipcode, address, description, price, negotiable, image, status, lemail,latitude,longitude,proname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
             $stmt = mysqli_prepare($conn, $sql);
             if (!$stmt) {
                 die("Error preparing the statement: " . mysqli_error($conn));
             }
 
             // Bind parameters
-            mysqli_stmt_bind_param($stmt, "ssssssssssdssss", $title, $bedroom, $bathroom, $land, $unit, $city, $state, $zipcode, $address, $desc, $price, $negotiable, $newfilename, $status, $email);
+            mysqli_stmt_bind_param($stmt, "ssssssssssdsssssss", $title, $bedroom, $bathroom, $land, $unit, $city, $state, $zipcode, $address, $desc, $price, $negotiable, $newfilename, $status, $email, $laititude, $longitude, $proname);
 
             // Execute the statement
             if (mysqli_stmt_execute($stmt)) {

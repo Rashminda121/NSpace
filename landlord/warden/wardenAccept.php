@@ -7,11 +7,12 @@ require_once('dbConfig.php');
 $conn = dbCon();
 
 $email = $_GET['email'];
+$status="false";
 
 // Retrieve data from the database
-$sql = "SELECT * FROM landlorddata WHERE lemail=? and status='false'";
+$sql = "SELECT * FROM landlorddata WHERE status=?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_bind_param($stmt, "s", $status);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
@@ -148,6 +149,18 @@ if (mysqli_num_rows($result) > 0) {
                                 <?php echo $req ? 'required' : ''; ?> disabled>
                         </div>
 
+                    </div>
+                     <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                                Property Name
+                            </label>
+                            <input
+                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="name" name="name" type="text" placeholder="Name" value="<?php echo $row['proname']; ?>" required>
+                            <?php $proname = $row['proname']; ?>
+                        </div>
+                    
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
 
@@ -308,6 +321,128 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
 
                     <hr><br>
+
+
+                        <!-- //map -->
+                        <div class="flex flex-wrap items-center justify-center -mx-3 mb-6">
+                            <div id="<?php echo $row['id']; ?>" style="width:100%;height:400px;"></div>
+                        </div>
+                        
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="lon">
+                                    Latitude
+                                </label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="lat<?php echo $row['id'] ?>" type="text" placeholder="Latitude" name="lat"
+                                    value="<?php echo $row['latitude']; ?>" required>
+                            </div>
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="lon">
+                                    Longitude
+                                </label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="lon<?php echo $row['id'] ?>" type="text" placeholder="Longitude" name="lon"
+                                    value="<?php echo $row['longitude']; ?>" required>
+                            </div>
+                            <?php $lat = $row['latitude'];
+                            $lon = $row['longitude']; ?>
+                        
+                        </div>
+                        <!-- --map-- -->
+                        
+                        
+                        <?php
+                        echo '
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var map = new google.maps.Map(document.getElementById(' . $row['id'] . '), {
+                                    center: new google.maps.LatLng(6.82163802690581, 80.04154070852864),
+                                    zoom: 8,
+                                });
+
+                                // NSBM marker
+                                var NSBMmarker = new google.maps.Marker({
+                                    position: { lat: 6.820996372680341, lng: 80.03984441709781 },
+                                    title: "NSBM Green University",
+                                    map: map,
+                                    //animation: google.maps.Animation.BOUNCE,
+                                    draggable: true,
+                                    icon: "./map/nsbmMarker.png"
+                                });
+
+                                let popupContent = new google.maps.InfoWindow();
+
+                                google.maps.event.addListener(NSBMmarker, "click", (function (NSBMmarker) {
+                                    return function () {
+                                        popupContent.setContent("NSBM Green University")
+                                        popupContent.open(map, NSBMmarker)
+                                    }
+                                })(NSBMmarker));
+
+                                // NSBM zoom in marker
+                                google.maps.event.addListener(NSBMmarker, \'click\', function () {
+                                    var pos = map.getZoom();
+                                    map.setZoom(17);
+                                    map.setCenter(NSBMmarker.getPosition());
+                                    window.setTimeout(function () { map.setZoom(pos); }, 20000);
+                                });
+
+
+                                // NSBM circle
+                                map.data.loadGeoJson(\'map/data/data.json\')
+                                map.data.setStyle({
+                                    fillColor: \'#35d016\',
+                                    strokeColor: \'#0b751c\',
+                                    fillOpacity: 0.1
+                                });
+
+                                
+                                // user marker
+                                
+                                var lat = ' . $lat . ';
+                                var lon = ' . $lon . ';
+                                var proname = "' . $proname . '";
+
+                                var usermarker = new google.maps.Marker({
+                                    position: { lat: lat, lng: lon },
+                                    title: "User Marker",
+                                    map: map,
+                                    //animation: google.maps.Animation.BOUNCE,
+                                    //draggable: true,
+                                    icon: "./map/pin.png"
+                                });
+
+                                let popupContent2 = new google.maps.InfoWindow();
+
+                                google.maps.event.addListener(usermarker, "click", (function (usermarker) {
+                                    return function () {
+                                        popupContent2.setContent(proname)
+                                        popupContent2.open(map, usermarker)
+                                    }
+                                })(usermarker));
+
+                                //  zoom in marker
+                                google.maps.event.addListener(usermarker, \'click\', function () {
+                                    var pos = map.getZoom();
+                                    map.setZoom(17);
+                                    map.setCenter(usermarker.getPosition());
+                                    window.setTimeout(function () { map.setZoom(pos); }, 20000);
+                                });
+
+
+                            });
+                        </script>';
+                                    ?>
+                        
+                        
+                        
+                        
+                        <!-- //map -->
+                        <hr><br>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
