@@ -35,16 +35,22 @@ CloseCon($conn);
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Article Title
+                        StudentID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Author's Name
+                        Student Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Date
+                        Batch
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Description
+                        Gender
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Password
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -58,16 +64,22 @@ CloseCon($conn);
             <?php foreach ($addStudent as $addStudent) : ?>
     <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <?php echo htmlspecialchars($addStudent['title']); ?>
+            <?php echo htmlspecialchars($addStudent['studID']); ?>
         </th>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addStudent['name']); ?>
+            <?php echo htmlspecialchars($addStudent['sname']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addStudent['date']); ?>
+            <?php echo htmlspecialchars($addStudent['sbatch']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addStudent['content']); ?>
+            <?php echo htmlspecialchars($addStudent['sgender']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <?php echo htmlspecialchars($addStudent['semail']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <?php echo htmlspecialchars($addStudent['spass']); ?>
         </td>
         <td class="px-6 py-4">
             <a href="edit_Student.php?id=<?php echo $addStudent['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
