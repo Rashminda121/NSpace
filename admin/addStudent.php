@@ -14,8 +14,8 @@
       <form action="addStudent.php" method="post">
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 mt-16">
               <div class="w-full">
-                  <label for="sid" class="block mb-2 text-sm font-medium text-gray-900 ">Student ID</label>
-                  <input type="text" name="sid" id="sid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student ID" required="">
+                  <label for="studID" class="block mb-2 text-sm font-medium text-gray-900 ">Student ID</label>
+                  <input type="text" name="studID" id="studID" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student ID" required="">
               </div>
               <div class="w-full">
                   <label for="sname" class="block mb-2 text-sm font-medium text-gray-900 ">Student Name</label>
@@ -37,8 +37,8 @@
                   <input type="text" name="semail" id="semail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student Email" required="">
               </div>
               <div class="w-full">
-                  <label for="spassword" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
-                  <input type="password" name="spassword" id="spassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student Password" required="">
+                  <label for="spass" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
+                  <input type="password" name="spass" id="spass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Student Password" required="">
               </div> 
           </div>
           <div class="flex justify-center">
@@ -57,19 +57,19 @@ require_once("dbconfig.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $conn = OpenCon(); 
 
-  $studID = sanitizeInput($_POST["sid"]);
+  $studID = sanitizeInput($_POST["studID"]);
   $sname = sanitizeInput($_POST["sname"]);
   $sbatch = sanitizeInput($_POST["sbatch"]);
   $sgender = $_POST["sgender"];  
   $semail = sanitizeInput($_POST["semail"]);
-  $spassword = sanitizeInput($_POST["spassword"]); 
+  $spass = sanitizeInput($_POST["spass"]); 
 
   
   $sql = "INSERT INTO student (studID, sname, sbatch, sgender, semail, spass)
           VALUES (?, ?, ?, ?, ?, ?)";
 
   $stmt = $conn->prepare($sql); 
-  $stmt->bind_param("ssssss", $studID, $sname, $sbatch, $sgender, $semail, $spassword); 
+  $stmt->bind_param("ssssss", $studID, $sname, $sbatch, $sgender, $semail, $spass); 
 
   try {
     if ($stmt->execute()) {
