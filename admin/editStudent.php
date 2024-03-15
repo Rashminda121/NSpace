@@ -35,16 +35,22 @@ CloseCon($conn);
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Article Title
+                        StudentID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Author's Name
+                        Student Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Date
+                        Batch
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Description
+                        Gender
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Password
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
