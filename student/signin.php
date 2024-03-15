@@ -39,7 +39,7 @@ function sanitizeInput($data) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <title>Hostel Management System</title>
+    <title>NSPACE - Hostel Management System</title>
 </head>
 <body>
 <section class="bg-gradient-to-b from-blue-600 via-green-600 to-green-900">
