@@ -3,40 +3,42 @@ require_once("dbConfig.php");
 
 $conn = OpenCon();
 
-if(isset($_GET['id'])) {
-    $article_id = $_GET['id'];
+if(isset($_GET['studID'])) {
+    $studID = $_GET['studID'];
     
     
-    $sql = "SELECT * FROM article WHERE id=?";
+    $sql = "SELECT * FROM student WHERE studID=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $article_id);
+    $stmt->bind_param("i", $studID);
     $stmt->execute();
     $result = $stmt->get_result();
     
     if($result->num_rows === 1) {
-        $article = $result->fetch_assoc();
+        $student = $result->fetch_assoc();
     } else {
-        echo "article not found.";
+        echo "Student details not found.";
         exit;
     }
 } else {
-    echo "article id is missing.";
+    echo "Student id is missing.";
     exit;
 }
 
-if(isset($_POST['update_article'])) {
+if(isset($_POST['update_student'])) {
 
-    $title = $_POST['title'];
-    $name = $_POST['name'];
-    $date = $_POST['date'];
-    $content = $_POST['content'];
+    $studID = $_POST['studID'];
+    $sname = $_POST['sname'];
+    $sbatch = $_POST['sbatch'];
+    $sgender = $_POST['sgender'];
+    $semail = $_POST['semail'];
+    $spass = $_POST['spass'];
     
-    $sql = "UPDATE article SET title=?, name=?, date=?, content=? WHERE id=?";
+    $sql = "UPDATE student SET studID=?, sname=?, sbatch=?, sgender=? semail=? spass=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssi", $title, $name, $date, $content, $article_id);
+    $stmt->bind_param("isssss", $studID, $sname, $sbatch, $sgender, $semail, $spass);
     $stmt->execute();
     
-    header("Location: editArticle.php");
+    header("Location: editStudent.php");
     exit;
 }
 ?>
@@ -46,7 +48,7 @@ if(isset($_POST['update_article'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel Management System</title>
+    <title>NSPACE - Hostel Management System</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
