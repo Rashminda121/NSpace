@@ -21,7 +21,7 @@ CloseCon($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   55
+ 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -82,7 +82,7 @@ CloseCon($conn);
             <?php echo htmlspecialchars($addStudent['spass']); ?>
         </td>
         <td class="px-6 py-4">
-            <a href="edit_Student.php?id=<?php echo $addStudent['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <a href="edit_Student.php?studID=<?php echo $addStudent['studID']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
