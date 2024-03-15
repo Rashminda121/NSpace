@@ -57,26 +57,36 @@ if(isset($_POST['update_student'])) {
     <section class="bg-white dark:bg-gray-900 mt-16">
 
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-  <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Edit Article</h2>
+  <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Edit Student Details</h2>
     <form action="" method="POST" class="space-y-8">
        
-        <div>
-              <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Article Title</label>
-              <input type="text" id="title" name="title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['title']; ?> ">
+          <div>
+              <label for="sid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">StudentID</label>
+              <input type="text" id="sid" name="sid" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['studID']; ?> ">
           </div>
           <div>
-              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Author's Name</label>
-              <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['name']; ?>" placeholder="Author's Name" required>
+              <label for="sname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Student Name</label>
+              <input type="text" id="sname" name="sname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['sname']; ?> ">
           </div>
           <div>
-              <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
-              <input type="date" id="date" name="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $article['date']; ?>" placeholder="date" required>
+              <label for="sbatch" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Student Batch</label>
+              <input type="text" id="sbatch" name="sbatch" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['sbatch']; ?>" placeholder="Student Batch" required>
           </div>
-        
-          <div class="sm:col-span-2">
-              <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Description</label>
-              <textarea id="message" name="content" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."><?php echo $article['content']; ?></textarea>
+          <div>
+               <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 ">Gender</label>
+                <select id="sgender" name="sgender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
           </div>
+          <div class="w-full">
+                  <label for="semail" class="block mb-2 text-sm font-medium text-gray-900 ">Student Email</label>
+                  <input type="email" id="semail" name="semail" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['semail']; ?>" placeholder="Student Email" required>
+              </div>
+              <div class="w-full">
+                  <label for="spassword" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
+                  <input type="password" id="spassword" name="spassword" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['spass']; ?>" placeholder="Student password" required>
+              </div>
        
           <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="update_article" value="Update article">Update Feedback</button>
         
