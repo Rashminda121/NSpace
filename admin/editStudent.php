@@ -3,7 +3,7 @@
 require_once("dbConfig.php");
 
 $conn = OpenCon();
-$sql = "SELECT * FROM addStudent";
+$sql = "SELECT * FROM student";
 $result = $conn->query($sql);
 
 $article = [];
@@ -21,7 +21,7 @@ CloseCon($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel Management System</title>
+ 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -35,16 +35,22 @@ CloseCon($conn);
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Article Title
+                        StudentID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Author's Name
+                        Student Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Date
+                        Batch
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Description
+                        Gender
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Password
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -58,19 +64,25 @@ CloseCon($conn);
             <?php foreach ($addStudent as $addStudent) : ?>
     <tr class="bg-white border-gray dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <?php echo htmlspecialchars($addStudent['title']); ?>
+            <?php echo htmlspecialchars($addStudent['studID']); ?>
         </th>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addStudent['name']); ?>
+            <?php echo htmlspecialchars($addStudent['sname']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addStudent['date']); ?>
+            <?php echo htmlspecialchars($addStudent['sbatch']); ?>
         </td>
         <td class="px-6 py-4">
-            <?php echo htmlspecialchars($addStudent['content']); ?>
+            <?php echo htmlspecialchars($addStudent['sgender']); ?>
         </td>
         <td class="px-6 py-4">
-            <a href="edit_Student.php?id=<?php echo $addStudent['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <?php echo htmlspecialchars($addStudent['semail']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <?php echo htmlspecialchars($addStudent['spass']); ?>
+        </td>
+        <td class="px-6 py-4">
+            <a href="edit_Student.php?studID=<?php echo $addStudent['studID']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
