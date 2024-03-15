@@ -33,10 +33,11 @@ if(isset($_POST['update_student'])) {
     $semail = $_POST['semail'];
     $spass = $_POST['spass'];
     
-    $sql = "UPDATE student SET studID=?, sname=?, sbatch=?, sgender=? semail=? spass=? WHERE id=?";
+    $sql = "UPDATE student SET studID=?, sname=?, sbatch=?, sgender=?, semail=?, spass=? WHERE studID=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isssss", $studID, $sname, $sbatch, $sgender, $semail, $spass);
+    $stmt->bind_param("isssssi", $studID, $sname, $sbatch, $sgender, $semail, $spass, $studID);
     $stmt->execute();
+    
     
     header("Location: editStudent.php");
     exit;
@@ -61,8 +62,8 @@ if(isset($_POST['update_student'])) {
     <form action="" method="POST" class="space-y-8">
        
           <div>
-              <label for="sid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">StudentID</label>
-              <input type="text" id="sid" name="sid" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['studID']; ?> ">
+              <label for="studID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">StudentID</label>
+              <input type="text" id="studID" name="studID" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['studID']; ?> ">
           </div>
           <div>
               <label for="sname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Student Name</label>
@@ -74,21 +75,22 @@ if(isset($_POST['update_student'])) {
           </div>
           <div>
                <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 ">Gender</label>
-                <select id="sgender" name="sgender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
+               <select id="sgender" name="sgender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+    <option value="male" <?php if ($student['sgender'] === 'male') echo 'selected'; ?>>Male</option>
+    <option value="female" <?php if ($student['sgender'] === 'female') echo 'selected'; ?>>Female</option>
+</select>
+
           </div>
           <div class="w-full">
                   <label for="semail" class="block mb-2 text-sm font-medium text-gray-900 ">Student Email</label>
                   <input type="email" id="semail" name="semail" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['semail']; ?>" placeholder="Student Email" required>
               </div>
               <div class="w-full">
-                  <label for="spassword" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
-                  <input type="password" id="spassword" name="spassword" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['spass']; ?>" placeholder="Student password" required>
+                  <label for="spass" class="block mb-2 text-sm font-medium text-gray-900 ">Student Password</label>
+                  <input type="password" id="spass" name="spass" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $student['spass']; ?>" placeholder="Student password" required>
               </div>
        
-          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="update_article" value="Update article">Update Feedback</button>
+          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="update_student" value="Update student">Update Student Deatils</button>
         
         
     </form>
