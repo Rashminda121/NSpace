@@ -3,15 +3,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-require_once('dbConfig.php');
-$conn = OpenCon();
+require_once('../dbConfig.php');
+$conn = dbCon();
 
 $email = $_GET['email'];
+$status="false";
 
 // Retrieve data from the database
-$sql = "SELECT * FROM landlorddata WHERE lemail=? and status='false'";
+$sql = "SELECT * FROM landlorddata WHERE status=?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_bind_param($stmt, "s", $status);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
@@ -355,7 +356,7 @@ if (mysqli_num_rows($result) > 0) {
                         
                         <?php
                         echo '
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4&libraries=geometry"></script>
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                                 var map = new google.maps.Map(document.getElementById(' . $row['id'] . '), {

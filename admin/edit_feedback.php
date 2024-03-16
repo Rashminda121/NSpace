@@ -1,8 +1,5 @@
 <?php
-// Include the dbConfig.php file to establish a database connection
 require_once("dbConfig.php");
-
-// Open a connection to the database
 $conn = OpenCon();
 
 // Check if feedback id is provided in the URL
@@ -48,6 +45,31 @@ if(isset($_POST['update_feedback'])) {
     header("Location: feedbackEdit.php");
     exit;
 }
+// Delete Action
+if (isset($_POST['delete'])) {
+    $sql = "DELETE FROM feedback WHERE id=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $feedback_id); // Use "i" for integer
+        mysqli_stmt_execute($stmt);
+
+        // Check if any rows were affected
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            header("Location: feedbackEdit.php?delete=1");
+            exit();
+        } else {
+            // Handle no rows affected error
+            header("Location: feedbackEdit.php?error=No feedback found to delete");
+            exit();
+        }
+    } else {
+        // Handle SQL error
+        header("Location: feedbackEdit.php?error=" . mysqli_error($conn));
+        exit();
+    }
+}
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +111,22 @@ if(isset($_POST['update_feedback'])) {
         
         
     </form>
+    <!-- JavaScript for confirmation dialog -->
+    <script>
+            function confirmDelete() {
+                if (confirm("Are you sure you want to delete this feedback?")) {
+                    return true;
+                }
+                return false;
+            }
+    </script>
+
+    <!-- Delete button with confirmation -->
+    <form action="" method="POST" onsubmit="return confirmDelete()">
+            <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-red-700 sm:w-fit hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" name="delete" value="Delete">Delete Feedback</button>
+    </form>
+
   </div>
-    </section>
+</section>
 </body>
 </html>

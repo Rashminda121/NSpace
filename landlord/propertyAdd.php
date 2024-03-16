@@ -10,26 +10,26 @@
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+    <?php include ("navbar.php"); ?>
     <?php
     session_start();
     //get email
-    if (isset($_GET['email'])) {
+    if (isset ($_GET['email'])) {
 
         $email = $_GET['email'];
     }
     //other
-    if (isset($_GET['error'])) {
+    if (isset ($_GET['error'])) {
         // $_SESSION['error'] = $_GET['error'];
         $error = $_GET['error'];
     }
-    if (isset($_GET['success'])) {
+    if (isset ($_GET['success'])) {
         $error = "Successfully Property Added! ";
         $bgcolour = "bg-green-100 border-green-400 text-green-700";
         $text = "Success : ";
         $tcol = "text-green-500";
 
-    } else if (isset($_GET["error"])) {
+    } else if (isset ($_GET["error"])) {
         $bgcolour = "bg-red-100 border-red-400 text-red-700";
         $text = "Error : ";
         $tcol = "text-red-500";
@@ -45,7 +45,7 @@
 //     $error = '';
 // }
     
-    if (!empty($error)): ?>
+    if (!empty ($error)): ?>
         <div id="errorContainer" class="border <?php echo $bgcolour ?> px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">
                 <?php echo $text ?>
@@ -68,7 +68,7 @@
         document.getElementById('closeButton').addEventListener('click', function () {
             document.getElementById('errorContainer').style.display = 'none';
             window.location.href = 'propertyAdd.php?email=<?php echo $email ?>';
-            <?php //unset($_SESSION['error']);                                                                                                                                                      ?>
+            <?php //unset($_SESSION['error']);                                                                                                                                                       ?>
         });
     </script>
 
@@ -355,11 +355,11 @@
         </form>
 
     </div>
-    <?php include("footer.php"); ?>
+    <?php include ("footer.php"); ?>
 
     <!-- --map-- -->
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4&libraries=geometry"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var map = new google.maps.Map(document.getElementById("map"), {

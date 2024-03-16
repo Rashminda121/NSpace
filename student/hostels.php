@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/0.7.5/flowbite.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;1,7..72,300;1,7..72,400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         #googleMap {
@@ -14,6 +17,9 @@
             margin-right:0px;
             width: calc(100% - 500px);
             height: 100vh;
+        }
+        body {
+            font-family: 'Literata', serif;
         }
         .hostel-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -35,9 +41,10 @@
     </style>
 </head>
 <body class="bg-gray-100">
+<?php include ("Navbar.php"); ?>
 <div class="flex">
-    <div id="panel" class="h-full w-80 bg-white p-4 fixed left-0 top-0 overflow-y-auto">
-        <h2 class="text-lg font-bold mb-4">Hostel Details</h2>
+    <div id="panel" class="h-full w-80 bg-white p-4 fixed left-0 top-0 overflow-y-auto mt-14">
+        <h2 class="text-lg font-bold mb-4 text-center">Hostel Details</h2>
         <?php
         $servername = "localhost";
         $username = "root";

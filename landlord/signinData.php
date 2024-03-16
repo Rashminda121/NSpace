@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Database connection
     require_once('dbConfig.php');
-    $conn = OpenCon();
+    $conn = dbCon();
 
     // Check if the connection was successful
     if (!$conn) {

@@ -2,15 +2,15 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (isset($_GET['email'])) {
+if (isset ($_GET['email'])) {
     $email = $_GET['email'];
 }
-if (isset($_GET['id'])) {
+if (isset ($_GET['id'])) {
     $id = $_GET['id'];
 }
 
 // Database connection
-require_once('../dbConfig.php');
+require_once ('../dbConfig.php');
 $conn = dbCon();
 
 // Retrieve data from the database
@@ -39,25 +39,25 @@ $result = mysqli_stmt_get_result($stmt);
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+    <?php include ("navbar.php"); ?>
 
     <?php
     session_start();
     //get email
     
     //other
-    if (isset($_GET['error'])) {
+    if (isset ($_GET['error'])) {
         // $_SESSION['error'] = $_GET['error'];
         $error = $_GET['error'];
     }
-    if (isset($_GET['update'])) {
+    if (isset ($_GET['update'])) {
         // $_SESSION['error'] = $_GET['error'];
         $error = $_GET['update'];
         $bgcolour = "bg-green-100 border-green-400 text-green-700";
         $text = "Success : ";
         $tcol = "text-green-500";
     }
-    if (isset($_GET['delete'])) {
+    if (isset ($_GET['delete'])) {
         // $_SESSION['error'] = $_GET['error'];
         $error = "Successfully Deleted!";
         $bgcolour = "bg-orange-100 border-orange-400 text-orange-700";
@@ -65,13 +65,13 @@ $result = mysqli_stmt_get_result($stmt);
         $tcol = "text-orange-500";
     }
 
-    if (isset($_GET['success'])) {
+    if (isset ($_GET['success'])) {
         $error = $_GET['success'];
         $bgcolour = "bg-green-100 border-green-400 text-green-700";
         $text = "Success : ";
         $tcol = "text-green-500";
 
-    } else if (isset($_GET["error"])) {
+    } else if (isset ($_GET["error"])) {
         $bgcolour = "bg-red-100 border-red-400 text-red-700";
         $text = "Error : ";
         $tcol = "text-red-500";
@@ -82,7 +82,7 @@ $result = mysqli_stmt_get_result($stmt);
     }
 
 
-    if (!empty($error)): ?>
+    if (!empty ($error)): ?>
         <div id="errorContainer" class="border <?php echo $bgcolour ?> px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">
                 <?php echo $text ?>
@@ -319,7 +319,7 @@ $result = mysqli_stmt_get_result($stmt);
 
                 <?php
                 echo '
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4&libraries=geometry"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     var map = new google.maps.Map(document.getElementById(\'map\'), {
@@ -469,7 +469,7 @@ $result = mysqli_stmt_get_result($stmt);
                 ini_set('display_errors', 1);
 
                 // Database connection
-                require_once('../dbConfig.php');
+                require_once ('../dbConfig.php');
                 $conn = dbCon();
 
                 // Retrieve data from the database
