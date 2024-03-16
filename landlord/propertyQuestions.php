@@ -3,11 +3,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-require_once('dbConfig.php');
+require_once ('dbConfig.php');
 $conn = dbCon();
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die ("Connection failed: " . mysqli_connect_error());
 }
 
 $email = $_GET['email'];
@@ -16,15 +16,15 @@ $email = $_GET['email'];
 $sql = "SELECT * FROM landlordview WHERE lemail=?";
 $stmt = mysqli_prepare($conn, $sql);
 if (!$stmt) {
-    die("Prepare failed: " . mysqli_error($conn));
+    die ("Prepare failed: " . mysqli_error($conn));
 }
 mysqli_stmt_bind_param($stmt, "s", $email);
 if (!mysqli_stmt_execute($stmt)) {
-    die("Execute failed: " . mysqli_error($conn));
+    die ("Execute failed: " . mysqli_error($conn));
 }
 $result = mysqli_stmt_get_result($stmt);
 if (!$result) {
-    die("Get result failed: " . mysqli_error($conn));
+    die ("Get result failed: " . mysqli_error($conn));
 }
 ?>
 
@@ -59,7 +59,7 @@ if (!$result) {
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+    <?php include ("navbar.php"); ?>
     <h1 class="text-2xl text-center m-5 text-blue-800 font-bold">View Questions</h1>
     <div class="flex flex-wrap justify-center place-content-center">
 
@@ -72,15 +72,15 @@ if (!$result) {
             $sql2 = "SELECT * FROM landlorddata WHERE lemail=? and id=?";
             $stmt2 = mysqli_prepare($conn, $sql2);
             if (!$stmt2) {
-                die("Prepare failed: " . mysqli_error($conn));
+                die ("Prepare failed: " . mysqli_error($conn));
             }
             mysqli_stmt_bind_param($stmt2, "sd", $email, $pid);
             if (!mysqli_stmt_execute($stmt2)) {
-                die("Execute failed: " . mysqli_error($conn));
+                die ("Execute failed: " . mysqli_error($conn));
             }
             $result2 = mysqli_stmt_get_result($stmt2);
             if (!$result2) {
-                die("Get result failed: " . mysqli_error($conn));
+                die ("Get result failed: " . mysqli_error($conn));
             }
 
             ?>
@@ -148,8 +148,8 @@ if (!$result) {
                             <div class="w-full px-3">
                                 <a href="#">
                                     <button type="submit" name="delete"
-                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 w-full rounded">
-                                        Reserve
+                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 w-full rounded">
+                                        Answerd
                                     </button>
                                 </a>
                             </div>
@@ -160,11 +160,19 @@ if (!$result) {
 
 
         <?php } ?>
+        <?php
+        if (mysqli_num_rows($result) == 0) {
+            ?>
+            <h1 class="text-2xl text-center m-10 text-gray-800 font-bold">No Questions</h1>
+            <?php
+        }
+        ?>
+
 
 
     </div>
     <div class="mb-20"></div>
-    <?php include("footer.php"); ?>
+    <?php include ("footer.php"); ?>
 
 </body>
 

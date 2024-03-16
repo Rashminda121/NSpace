@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-require_once('dbConfig.php');
+require_once ('../dbConfig.php');
 $conn = dbCon();
 
 $email = $_GET['email'];
@@ -13,7 +13,7 @@ $accept = "accept";
 $reject = "reject";
 
 // Edit Action
-if (isset($_POST['edit'])) {
+if (isset ($_POST['edit'])) {
 
     $sql = "UPDATE landlorddata SET status=? WHERE id=?";
     $stmt = mysqli_prepare($conn, $sql);
@@ -40,7 +40,7 @@ if (isset($_POST['edit'])) {
 
 }
 
-if (isset($_POST['delete'])) {
+if (isset ($_POST['delete'])) {
     $sql = "UPDATE landlorddata SET status=? WHERE id=?";
     $stmt = mysqli_prepare($conn, $sql);
     if ($stmt) {
