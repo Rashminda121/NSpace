@@ -1,8 +1,5 @@
 <?php
-// Include the dbConfig.php file to establish a database connection
 require_once("dbConfig.php");
-
-// Open a connection to the database
 $conn = OpenCon();
 
 // Check if feedback id is provided in the URL
