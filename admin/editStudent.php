@@ -28,7 +28,7 @@ CloseCon($conn);
 <body>
 <?php include ("adminNavbar.php"); ?>
 <div class="mx-auto max-w-screen-sm mt-20">
-          <h2 class="mb-4 text-4xl tracking-tight text-center font-extrabold text-gray-900 dark:text-white">Edit Articles</h2>
+          <h2 class="mb-4 text-4xl tracking-tight text-center font-extrabold text-gray-900 dark:text-white">Edit Student</h2>
       </div> 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg ml-4 mr-4">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
