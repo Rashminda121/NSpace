@@ -12,13 +12,7 @@ if ($result->num_rows > 0) {
         $feedbacks[] = $row;
     }
 }
-if (isset($_GET['delete'])) {
-    // $_SESSION['error'] = $_GET['error'];
-    $error = "Successfully Property deleted!";
-    $bgcolour = "bg-orange-100 border-orange-400 text-orange-700";
-    $text = "Success : ";
-    $tcol = "text-orange-500";
-}
+
 CloseCon($conn);
 ?>
 
