@@ -13,6 +13,31 @@ if ($result->num_rows > 0) {
     }
 }
 
+// Delete Action
+if (isset($_POST['delete'])) {
+    $studID = $_POST['studID']; 
+    $sql = "DELETE FROM student WHERE studID=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $studID); // Bind the id properly
+        mysqli_stmt_execute($stmt);
+
+        // Check if any rows were affected
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            header("Location: editStudent.php?delete=1");
+            exit();
+        } else {
+            // Handle no rows affected error
+            header("Location: editStudent.php?error=No Student details found to delete");
+            exit();
+        }
+    } else {
+        // Handle SQL error
+        header("Location: editStudent.php?error=" . mysqli_error($conn));
+        exit();
+    }
+}
+
 CloseCon($conn);
 ?>
 
@@ -85,9 +110,24 @@ CloseCon($conn);
             <a href="edit_Student.php?studID=<?php echo $addStudent['studID']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
-            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+            <form action="" method="POST" onsubmit="return confirmDelete()">
+                <input type="hidden" name="studID" value="<?php echo $addStudent['studID']; ?>">
+                    <button type="submit" name="delete" value="<?php echo $addStudent['studID']; ?>"
+                    class="font-medium text-red-600 dark:text-red-500 hover:underline mt-3">Delete</button>
+            </form>
+
         </td>
     </tr>
+    
+    <script>
+            function confirmDelete() {
+                if (confirm("Are you sure you want to delete this Student Details?")) {
+                    return true;
+                }
+                return false;
+            }
+    </script>
+    
 <?php endforeach; ?>
 
 
