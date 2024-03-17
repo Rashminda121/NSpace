@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
-    <?php include("propertyCount.php"); ?>
+    <?php include ("navbar.php"); ?>
+    <?php include ("propertyCount.php"); ?>
     <?php
-    if (isset($_GET['email'])) {
+    if (isset ($_GET['email'])) {
 
         $email = $_GET['email'];
     } ?>
@@ -57,7 +57,7 @@
                     <i class="fa-solid fa-pen-to-square mr-2 -mb-1 justify-center w-5 h-5"></i>
                     Edit Properties
                 </a>
-                <a href="#"
+                <a href="propertyQuestions.php?email=<?php echo $email; ?>"
                     class="inline-flex justify-center items-center py-2 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-[#084cd4] hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
                     <i class="fa-solid fa-hourglass-half mr-2 -mb-1 justify-center w-5 h-5"></i>
                     Requests
@@ -174,7 +174,7 @@
 
     </section>
 
-    <?php include("footer.php"); ?>
+    <?php include ("footer.php"); ?>
 </body>
 
 </html>

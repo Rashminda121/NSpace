@@ -3,10 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-require_once('dbConfig.php');
+require_once('../dbConfig.php');
 $conn = dbCon();
 
-$email = $_GET['email'];
+// $email = $_GET['email'];
 $status="false";
 
 // Retrieve data from the database
@@ -27,7 +27,7 @@ if (mysqli_num_rows($result) > 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="navbar.js"></script>
-        <title>Property Edit</title>
+        <title>Warden Accept</title>
     </head>
 
     <body>
@@ -315,8 +315,8 @@ if (mysqli_num_rows($result) > 0) {
                     <!-- Display images -->
                     <div class="flex flex-wrap justify-center mb-5">
                      
-                        <div class="w-full sm:w-2/5 px-2 mb-4 shadow-xl">
-                            <img src="uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
+                        <div class="w-full sm:w-3/5 px-2 mb-4 shadow-xl">
+                            <img src="../uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
                         </div>
                     </div>
 
@@ -356,7 +356,7 @@ if (mysqli_num_rows($result) > 0) {
                         
                         <?php
                         echo '
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4&libraries=geometry"></script>
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                                 var map = new google.maps.Map(document.getElementById(' . $row['id'] . '), {
@@ -503,7 +503,7 @@ if (mysqli_num_rows($result) > 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="navbar.js"></script>
-        <title>Property Edit</title>
+        <title>Warden Accept</title>
     </head>
 
     <body>
