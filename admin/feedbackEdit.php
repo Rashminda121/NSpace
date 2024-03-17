@@ -12,13 +12,31 @@ if ($result->num_rows > 0) {
         $feedbacks[] = $row;
     }
 }
-if (isset($_GET['delete'])) {
-    // $_SESSION['error'] = $_GET['error'];
-    $error = "Successfully Property deleted!";
-    $bgcolour = "bg-orange-100 border-orange-400 text-orange-700";
-    $text = "Success : ";
-    $tcol = "text-orange-500";
+// Delete Action
+if (isset($_POST['delete'])) {
+    $feedback_id = $_POST['feedback_id']; 
+    $sql = "DELETE FROM feedback WHERE id=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $feedback_id); // Bind the id properly
+        mysqli_stmt_execute($stmt);
+
+        // Check if any rows were affected
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            header("Location: feedbackEdit.php?delete=1");
+            exit();
+        } else {
+            // Handle no rows affected error
+            header("Location: feedbackEdit.php?error=No feedback found to delete");
+            exit();
+        }
+    } else {
+        // Handle SQL error
+        header("Location: feedbackEdit.php?error=" . mysqli_error($conn));
+        exit();
+    }
 }
+
 CloseCon($conn);
 ?>
 
@@ -79,11 +97,25 @@ CloseCon($conn);
             <a href="edit_Feedback.php?id=<?php echo $feedback['id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         </td>
         <td class="px-6 py-4">
-            <button type="submit" name="delete"
-            class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+            <form action="" method="POST" onsubmit="return confirmDelete()">
+                <input type="hidden" name="feedback_id" value="<?php echo $feedback['id']; ?>">
+                    <button type="submit" name="delete" value="<?php echo $feedback['id']; ?>"
+                    class="font-medium text-red-600 dark:text-red-500 hover:underline mt-3">Delete</button>
+            </form>
+
         </td>
        
     </tr>
+    <!-- JavaScript for confirmation dialog -->
+    <script>
+            function confirmDelete() {
+                if (confirm("Are you sure you want to delete this feedback?")) {
+                    return true;
+                }
+                return false;
+            }
+    </script>
+
 <?php endforeach; ?>
 
 
