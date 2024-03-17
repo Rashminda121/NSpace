@@ -1,5 +1,5 @@
 <?php
-if (isset ($_GET['email'])) {
+if (isset($_GET['email'])) {
 
   $email = $_GET['email'];
 } ?>
@@ -33,30 +33,29 @@ if (isset ($_GET['email'])) {
           <a href="#"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Articles</a>
         </li>
-
         <li>
           <a href="propertyView.php?email=<?php echo $email ?>"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Properties</a>
         </li>
         <li>
-          <a href="propertyQuestions.php?email=<?php echo $email ?>"
-            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Questions</a>
+          <a href="wardenAccept.php?email=<?php echo $email ?>"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Warden
+            Accept</a>
         </li>
         <li>
-          <a href="propertyReservation.php?email=<?php echo $email ?>"
-            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Reservation</a>
+          <a href="./student/stViewProperty.php?email=<?php echo $email ?>"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Student</a>
         </li>
         <li>
           <a href="landlordProfile.php?email=<?php echo $email ?>"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Profile</a>
         </li>
-
         <li>
           <a href="#"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Contact</a>
         </li>
         <li class="pl-3 pr-3">
-          <a href="signin.php"
+          <a href="stSigning.php"
             class="block text-white rounded hover:bg-gray-100 md:hover:bg-green-800 md:border-0 md:hover:text-white md:p-2 bg-blue-800 p-3">Logout</a>
         </li>
       </ul>
