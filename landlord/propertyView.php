@@ -278,7 +278,7 @@ if (mysqli_num_rows($result) > 0) {
                                 
                     <?php
                 echo '
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Y2wjpvIxdIEZiaog97p2jj9p1o6hjv4&libraries=geometry"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1UfAW-b-f-swGAISQfcMjrNMARAd3Rx4&libraries=geometry"></script>
                 <script>
                     document.addEventListener("DOMContentLoaded", function () {
                         var map = new google.maps.Map(document.getElementById(' . $row['id'] . '), {

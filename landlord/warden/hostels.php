@@ -154,7 +154,7 @@
                 title: "NSBM Green University",
                 map: map,
                 //animation: google.maps.Animation.BOUNCE,
-                draggable: true,
+                // draggable: true,
                 icon: "../map/nsbmMarker.png"
             });
 
@@ -239,7 +239,7 @@
                 google.maps.event.addListener(usermarker, 'click', function () {
                     var pos = map.getZoom();
                     map.setZoom(17);
-                    map.setCenter(usermarker.getPosition());
+                    map.setCenter(this.getPosition());
                     window.setTimeout(function () { map.setZoom(pos); }, 20000);
                 });
 

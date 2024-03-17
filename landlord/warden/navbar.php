@@ -1,5 +1,5 @@
 <?php
-if (isset ($_GET['email'])) {
+if (isset($_GET['email'])) {
 
   $email = $_GET['email'];
 } ?>
