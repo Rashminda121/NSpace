@@ -132,7 +132,7 @@ $result = mysqli_stmt_get_result($stmt);
             </div>
             <div class="flex flex-wrap justify-center mb-10">
 
-                <div class="w-full sm:w-2/5 px-2 mb-4 shadow-2xl">
+                <div class="w-full px-2 mb-4 shadow-2xl">
                     <img src="../uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image"
                         class="mx-auto w-full h-auto">
                 </div>
