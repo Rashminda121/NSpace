@@ -36,7 +36,7 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="navbar.js"></script>
-    <title>Property Edit</title>
+    <title>Property Questons</title>
     <style>
         .table-container {
             display: flex;
@@ -60,12 +60,78 @@ if (!$result) {
 
 <body>
     <?php include ("navbar.php"); ?>
+    <?php
+    session_start();
+    $req = false;
+    //get email
+    if (isset ($_GET['email'])) {
+
+        $email = $_GET['email'];
+    }
+    //other
+    if (isset ($_GET['error'])) {
+        // $_SESSION['error'] = $_GET['error'];
+        $error = $_GET['error'];
+    }
+
+
+
+    if (isset ($_GET['success'])) {
+        $error = "Successfully Status Updated! ";
+        $bgcolour = "bg-green-100 border-green-400 text-green-700";
+        $text = "Success : ";
+        $tcol = "text-green-500";
+
+    } else if (isset ($_GET["error"])) {
+        $bgcolour = "bg-red-100 border-red-400 text-red-700";
+        $text = "Error : ";
+        $tcol = "text-red-500";
+    } else {
+        $bgcolour = "bg-blue-100 border-blue-400 text-blue-700";
+        $text = "Message : ";
+        $tcol = "text-blue-500";
+    }
+
+
+    if (!empty ($error)): ?>
+        <div id="errorContainer" class="border <?php echo $bgcolour ?> px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">
+                <?php echo $text ?>
+            </strong>
+            <span class="block sm:inline">
+                <?php echo $error; ?>
+            </span>
+            <span id="closeButton" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
+                <svg class="fill-current h-6 w-6 <?php echo $tcol ?>" role="button" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path
+                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                </svg>
+            </span>
+        </div>
+    <?php endif; ?>
+
+    <script>
+        document.getElementById('closeButton').addEventListener('click', function () {
+            document.getElementById('errorContainer').style.display = 'none';
+            window.location.href = 'propertyQuestions.php?email=<?php echo $email ?>';
+        });
+    </script>
+
+
+
+
+
+
     <h1 class="text-2xl text-center m-5 text-blue-800 font-bold">View Questions</h1>
     <div class="flex flex-wrap justify-center place-content-center">
 
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
             <?php $pid = $row['pid']; ?>
+            <?php $qid = $row['id']; ?>
+            <?php $rstatus = $row['status']; ?>
             <?php
 
             // Retrieve data from the database for each property
@@ -104,7 +170,7 @@ if (!$result) {
                             class="flex flex-col mb-5 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 pr-5 pl-5">
                             <img src="uploads/<?php echo $row2['image']; ?>"
                                 class=" mx-auto  w-auto h-40 shadow-md  transition duration-200 transform hover:scale-110"
-                                style="height:100%;max-height: 200px;overflow: hidden;" alt="Nspace Logo" />
+                                style="height:100%;max-height: 200px;overflow: hidden;" alt="propert image" />
                         </div>
                     </div>
                     <div class="py-4 px-4 mx-auto max-w-screen-xl text-center lg:py-4 lg:px-14">
@@ -146,14 +212,28 @@ if (!$result) {
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-4 mb-4 text-center">
-                            <div class="w-full px-3">
-                                <a href="#">
-                                    <button type="submit" name="delete"
-                                        class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 w-full rounded">
-                                        Answerd
-                                    </button>
-                                </a>
-                            </div>
+                            <form action="propertyquestionData.php?email=<?php echo $email ?>&qid=<?php echo $qid ?>"
+                                method="post" class="w-full">
+                                <div class="w-full px-3" style="width:100%;">
+                                    <?php if ($rstatus == 'answered') { ?>
+                                        <a href="#">
+
+                                            <button type="submit" name="answer"
+                                                class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 w-full rounded"
+                                                disabled>
+                                                Answerd
+                                            </button></a>
+                                    <?php } else { ?>
+                                        <a href="#">
+                                            <button type="submit" name="answer"
+                                                class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 w-full rounded">
+                                                Answer
+                                            </button>
+                                        </a>
+                                    <?php } ?>
+
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
