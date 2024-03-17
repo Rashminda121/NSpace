@@ -87,19 +87,17 @@ if (!$result) {
 
             <?php while ($row2 = mysqli_fetch_assoc($result2)) { ?>
 
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow  dark:border-gray-700 m-2 shadow-lg">
+                <div class="max-w-sm bg-white border border-blue-200 rounded-lg shadow  dark:border-blue-700 m-2 shadow-lg">
                     <!-- /// -->
                     <div class="flex flex-wrap -mx-2 mb-6 text-center pt-5">
                         <div class="w-full px-3">
                             <h5 class="font-sans text-lg text-grey-900 font-bold">
-                                <?php echo $row['id']; ?>
+                                <!-- <?php echo $row['id']; ?> -->
 
                             </h5>
                         </div>
                     </div>
-                    <div class="py-4 px-4 mx-auto max-w-screen-xl text-center lg:py-4 lg:px-12">
-                        <hr>
-                    </div>
+
 
                     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-8 lg:px-12">
                         <div
@@ -109,9 +107,12 @@ if (!$result) {
                                 style="height:100%;max-height: 200px;overflow: hidden;" alt="Nspace Logo" />
                         </div>
                     </div>
+                    <div class="py-4 px-4 mx-auto max-w-screen-xl text-center lg:py-4 lg:px-14">
+                        <hr>
+                    </div>
                     <div class="flex flex-wrap -mx-4 mb-6 pl-6">
                         <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pl-4"
+                            <label class="block uppercase tracking-wide text-xs font-bold mb-2 pl-4 text-blue-700"
                                 for="bedroom">Property Name</label>
                             <p id="bedroom" name="bedroom"
                                 class="appearance-none block w-full  text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -123,7 +124,7 @@ if (!$result) {
                     </div>
                     <div class="flex flex-wrap -mx-4 mb-6 pl-6">
                         <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pl-4"
+                            <label class="block uppercase tracking-wide text-blue-700 text-xs font-bold mb-2 pl-4"
                                 for="bedroom">User Email</label>
                             <p id="bedroom" name="bedroom"
                                 class="appearance-none block w-full  text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -137,7 +138,7 @@ if (!$result) {
 
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full px-3">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pl-4"
+                                <label class="block uppercase tracking-wide text-blue-700 text-xs font-bold mb-2 pl-4"
                                     for="bedroom">Question</label>
                                 <textarea id="description" name="description" rows="4" cols="50"
                                     class="appearance-none block w-full  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
@@ -148,7 +149,7 @@ if (!$result) {
                             <div class="w-full px-3">
                                 <a href="#">
                                     <button type="submit" name="delete"
-                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 w-full rounded">
+                                        class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 w-full rounded">
                                         Answerd
                                     </button>
                                 </a>
