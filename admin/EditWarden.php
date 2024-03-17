@@ -35,7 +35,7 @@ if (isset($_POST['update_warden'])) {
     $stmt->bind_param("ssssi", $wname, $wmobile, $wpassword, $wemail, $id);
     $stmt->execute();
 
-    header("Location: View&EditWarden.php");
+    header("Location: ViewEditWarden.php");
     exit;
 }
 
@@ -46,7 +46,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    header("Location: View&EditWarden.php");
+    header("Location: ViewEditWarden.php");
     exit;
 }
 ?>
@@ -78,7 +78,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
           </div>
           <div>
               <label for="wmobile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Warden Mobile</label>
-              <input type="text" id="wmobile" name="wmobile" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $warden['wmobile']; ?>" placeholder="Warden Mobile" required>
+              <input type="text" id="wmobile" name="wmobile" pattern="[0-9]{10}" title="Please add 10 digits only" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="<?php echo $warden['wmobile']; ?>" placeholder="Warden Mobile" required>
           </div>
           <div class="w-full">
                   <label for="wemail" class="block mb-2 text-sm font-medium text-gray-900 ">Warden Email</label>
