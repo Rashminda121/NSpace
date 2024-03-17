@@ -49,8 +49,61 @@
 </head>
 
 <body class="bg-gray-100">
+    <?php
+
+    //other
+    if (isset ($_GET['error'])) {
+        // $_SESSION['error'] = $_GET['error'];
+        $error = $_GET['error'];
+    }
+
+    if (isset ($_GET['success'])) {
+        $error = $_GET['success'];
+        $bgcolour = "bg-green-100 border-green-400 text-green-700";
+        $text = "Success : ";
+        $tcol = "text-green-500";
+
+    } else if (isset ($_GET["error"])) {
+        $bgcolour = "bg-red-100 border-red-400 text-red-700";
+        $text = "Error : ";
+        $tcol = "text-red-500";
+    } else {
+        $bgcolour = "bg-blue-100 border-blue-400 text-blue-700";
+        $text = "Message : ";
+        $tcol = "text-blue-500";
+    }
+
+
+    if (!empty ($error)): ?>
+        <div id="errorContainer" class="border <?php echo $bgcolour ?> px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">
+                <?php echo $text ?>
+            </strong>
+            <span class="block sm:inline">
+                <?php echo $error; ?>
+            </span>
+            <span id="closeButton" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
+                <svg class="fill-current h-6 w-6 <?php echo $tcol ?>" role="button" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path
+                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                </svg>
+            </span>
+        </div>
+    <?php endif; ?>
+
+    <script>
+        document.getElementById('closeButton').addEventListener('click', function () {
+            document.getElementById('errorContainer').style.display = 'none';
+            window.location.href = 'hostels.php';
+        });
+    </script>
 
     <?php include ("navbar.php"); ?>
+
+
+
 
     <div class="flex">
         <div id="panel" class="h-full w-80 bg-white p-4 fixed left-0 top-0 overflow-y-auto mt-14 mb-20 pb-20"
@@ -112,10 +165,21 @@
                         <hr>
                         <hr>
                     </p>
-                    <form action="" method="post" class="text-center mt-2">
-                        <button type="submit" class="p-2 bg-blue-800 w-full text-white rounded">
+                    <form
+                        action="reserveData.php?pid=<?php echo $row['id'] ?>&proname=<?php echo $row['proname'] ?>&lemail=<?php echo $row['lemail'] ?>"
+                        method="post" class="text-center mt-2">
+                        <button type="submit" name="submit"
+                            class="p-2 bg-blue-700 hover:bg-blue-800  w-full text-white rounded">
                             Reserve
                         </button>
+
+                    </form>
+                    <form action="viewMore.php?id=<?php echo $row['id']; ?>&email=<?php echo $row['lemail']; ?>"
+                        method="post" class="text-center mt-2">
+                        <button type="submit" class="p-2 bg-green-700 hover:bg-green-800  w-full text-white rounded">
+                            View More
+                        </button>
+
                     </form>
 
                 </div>
@@ -239,8 +303,9 @@
                 google.maps.event.addListener(usermarker, 'click', function () {
                     var pos = map.getZoom();
                     map.setZoom(17);
-                    map.setCenter(usermarker.getPosition());
+                    map.setCenter(this.getPosition());
                     window.setTimeout(function () { map.setZoom(pos); }, 20000);
+                    // openPopupCard(usermarker);
                 });
 
             <?php endforeach; ?>
