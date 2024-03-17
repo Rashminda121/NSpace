@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 require_once('../dbConfig.php');
 $conn = dbCon();
 
-$email = $_GET['email'];
+// $email = $_GET['email'];
 $status="false";
 
 // Retrieve data from the database
@@ -27,7 +27,7 @@ if (mysqli_num_rows($result) > 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="navbar.js"></script>
-        <title>Property Edit</title>
+        <title>Warden Accept</title>
     </head>
 
     <body>
@@ -315,8 +315,8 @@ if (mysqli_num_rows($result) > 0) {
                     <!-- Display images -->
                     <div class="flex flex-wrap justify-center mb-5">
                      
-                        <div class="w-full sm:w-2/5 px-2 mb-4 shadow-xl">
-                            <img src="uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
+                        <div class="w-full sm:w-3/5 px-2 mb-4 shadow-xl">
+                            <img src="../uploads/<?php echo $row['image']; ?>" alt="Property Image" name="image" class="mx-auto w-full h-auto">
                         </div>
                     </div>
 
@@ -503,7 +503,7 @@ if (mysqli_num_rows($result) > 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="navbar.js"></script>
-        <title>Property Edit</title>
+        <title>Warden Accept</title>
     </head>
 
     <body>
