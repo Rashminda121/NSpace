@@ -43,7 +43,7 @@ if (isset ($_GET['email'])) {
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Questions</a>
         </li>
         <li>
-          <a href="propertReservation.php?email=<?php echo $email ?>"
+          <a href="propertyReservation.php?email=<?php echo $email ?>"
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-2">Reservation</a>
         </li>
         <li>
