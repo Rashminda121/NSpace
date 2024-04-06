@@ -122,8 +122,9 @@ if (mysqli_num_rows($result) > 0) {
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
+             <h1 class="text-center font-semibold text-2xl mt-8">Property Requests</h1>
             <div class="flex justify-center p-10 place-content-center mb-10">
-
+               
                 <hr>
                 <form action="wardenAcceptData.php?email=<?php echo $email ?>&currentid=<?php echo $row['id'] ?>" method="post"
                     enctype="multipart/form-data" class="w-full max-w-lg shadow-xl p-10">

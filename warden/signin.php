@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows == 1) {
         // User exists, redirect to home.php
-        header("Location: home.php");
+        header("Location: ../landlord/warden/home.php");
         exit(); // Ensure script stops execution after redirection
     } else {
         // User doesn't exist or credentials are incorrect
